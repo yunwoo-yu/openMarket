@@ -1,16 +1,14 @@
 import Home from "./pages/Home";
-import { createGlobalStyle } from "styled-components";
-import reset from "styled-reset";
-
-const GlobalStyle = createGlobalStyle`${reset}
-*{box-sizing:border-box;}
-`;
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
     <>
-      <GlobalStyle />
-      <Home />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }

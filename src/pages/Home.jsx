@@ -1,10 +1,11 @@
-import MainHeader from "../components/MainHeader";
+import MainHeader from "../components/MainHeader/MainHeader";
 
 const Home = () => {
-
-    return <>
-        <MainHeader />
+  return (
+    <>
+      <MainHeader />
     </>
-}
+  );
+};
 
 export default Home;
