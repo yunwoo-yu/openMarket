@@ -1,10 +1,9 @@
 import { DefaultWrapper } from "../UI/Layout/DefaultWrapper";
-import { InnerContainer } from "../UI/Layout/InnerContainer";
-
+import { Banner } from "./styled";
 const MainBanner = () => {
   return (
     <DefaultWrapper>
-      <InnerContainer>또와</InnerContainer>
+      <Banner />
     </DefaultWrapper>
   );
 };

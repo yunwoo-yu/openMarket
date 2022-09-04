@@ -1,16 +1,7 @@
 import styled from "styled-components";
 
-export const MainSlider = styled.div`
+export const Banner = styled.div`
+  width: 100%;
+  min-height: 500px;
   background-color: #999;
-
-  .slick-slider {
-    min-height: 500px;
-
-    .slick-prev {
-      left: 25px;
-    }
-    .slick-next {
-      right: 25px;
-    }
-  }
 `;
