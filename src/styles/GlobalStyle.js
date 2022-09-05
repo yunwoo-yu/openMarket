@@ -15,7 +15,7 @@ body {
 
 
 a{
-  color:#767676;
+  
   text-decoration: none;
   
 }

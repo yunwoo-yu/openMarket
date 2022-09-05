@@ -1,17 +1,26 @@
 import { useContext, useEffect } from "react";
-import { DefaultWrapper } from "../../UI/Layout/DefaultWrapper";
 import ProductsContext from "../../../store/products/products-context";
 import ProductsItem from "../ProductsItem/ProductsItem";
 import { InnerContainer } from "../../UI/Layout/InnerContainer";
 import { ProductsWrap } from "./styled";
+import { getProductsList } from "../../../axios-api";
 
 const ProductsList = () => {
   const productCtx = useContext(ProductsContext);
-  const { productList } = productCtx;
+  const { productList, setProductsList } = productCtx;
+
+  const requestGetProductList = async () => {
+    try {
+      const response = await getProductsList();
+      setProductsList(response.results);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
-    productCtx.getProducts();
+    requestGetProductList();
   }, []);
-  console.log(productList);
 
   return (
     <InnerContainer>
