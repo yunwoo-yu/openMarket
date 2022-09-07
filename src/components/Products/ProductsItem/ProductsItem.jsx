@@ -11,9 +11,9 @@ const ProductsItem = ({ item }) => {
       <Link to={`/products/${product_id}`}>
         <img src={image} alt="상품 이미지" />
         <ul>
-          <li className="store_title">{seller_store}</li>
-          <li className="product_name">{product_name}</li>
-          <li className="product_price">
+          <li className="store-title">{seller_store}</li>
+          <li className="product-name">{product_name}</li>
+          <li className="product-price">
             {priceWon}
             <span>원</span>
           </li>

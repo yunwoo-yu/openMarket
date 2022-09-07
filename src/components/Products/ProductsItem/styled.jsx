@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
 export const Product = styled.li`
-  max-width: 380px;
+  width: 380px;
   margin-right: 70px;
   margin-top: 78px;
+  object-fit: cover;
 
   &:nth-child(3n + 0) {
     margin-right: 0;
@@ -19,19 +20,19 @@ export const Product = styled.li`
     }
 
     > ul {
-      > .store_title {
+      > .store-title {
         margin: 16px 0 10px;
         font-size: 16px;
         line-height: 22px;
         color: #767676;
       }
-      > .product_name {
+      > .product-name {
         margin-bottom: 10px;
         font-size: 18px;
         line-height: 22px;
         color: #000;
       }
-      > .product_price {
+      > .product-price {
         font-size: 24px;
         line-height: 30px;
         font-weight: 700;

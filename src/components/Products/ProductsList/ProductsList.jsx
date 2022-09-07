@@ -13,6 +13,7 @@ const ProductsList = () => {
     try {
       const response = await getProductsList();
       setProductsList(response.results);
+      console.log(response);
     } catch (err) {
       console.log(err);
     }
