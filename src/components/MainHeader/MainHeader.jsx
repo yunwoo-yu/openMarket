@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { HeaderWrapper } from "../UI/Layout/HeaderWrapper";
-import { Logo } from "../UI/Logo";
 import { InnerHeader } from "./styled";
 
 const MainHeader = () => {
@@ -10,9 +9,9 @@ const MainHeader = () => {
     <HeaderWrapper>
       <InnerHeader>
         <Link to="/">
-          <Logo>
+          <h1>
             <img src={`${publicUrl}/assets/Logo-hodu.png`} alt="로고" />
-          </Logo>
+          </h1>
         </Link>
         <form>
           <input type="text" placeholder="상품을 검색해보세요!" />

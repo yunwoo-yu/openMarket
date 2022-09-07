@@ -6,5 +6,8 @@ export const ProductDetail = styled.article`
       width: 600px;
       height: 600px;
     }
+
+    figcaption {
+    }
   }
 `;
