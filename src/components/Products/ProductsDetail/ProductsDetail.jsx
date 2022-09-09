@@ -65,7 +65,7 @@ const ProductsDetail = () => {
                 <p>총 상품 금액</p>
                 <p className="sum-amount">
                   총수량
-                  <span>1</span>개
+                  <span>{productAmount}</span>개
                 </p>
                 <p className="sum-price">
                   {(productData.price * productAmount)

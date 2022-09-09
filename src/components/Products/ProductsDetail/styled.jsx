@@ -56,6 +56,7 @@ export const ProductDetail = styled.article`
           background: none;
           border: none;
           padding: 0;
+          cursor: pointer;
           > img {
             width: 20px;
           }
