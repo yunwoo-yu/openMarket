@@ -1,5 +1,6 @@
 import { DefaultWrapper } from "../../UI/Layout/DefaultWrapper";
 import { InnerContainer } from "../../UI/Layout/InnerContainer";
+import { MediumButton } from "../../UI/Button/MediumButton/MediumButton";
 import { ProductDetail } from "./styled";
 
 const ProductsDetail = ({
@@ -10,7 +11,6 @@ const ProductsDetail = ({
   onPlus,
   onMinus,
 }) => {
-  console.log();
   return (
     <DefaultWrapper>
       <InnerContainer>
@@ -55,9 +55,11 @@ const ProductsDetail = ({
                   <span>원</span>
                 </p>
               </div>
-              <div>
-                <button></button>
-                <button></button>
+              <div className="buy-button-box">
+                <MediumButton width="416px">바로 구매</MediumButton>
+                <MediumButton width="200px" backgroundColor="#767676">
+                  장바구니
+                </MediumButton>
               </div>
             </figcaption>
           </figure>

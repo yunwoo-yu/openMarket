@@ -14,7 +14,9 @@ const Product = () => {
     setProductAmount(productAmount + 1);
   };
   const amountMinus = () => {
-    setProductAmount(productAmount - 1);
+    productAmount === 1
+      ? setProductAmount(1)
+      : setProductAmount(productAmount - 1);
   };
 
   const getPriceWon = () => {
