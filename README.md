@@ -66,4 +66,4 @@ yarn 설치 : `$ npm install yarn`
 
 ## 정보
 
-유윤우 – [@티스토리 주소](https://velog.io/@daydream) – [@이메일주소](skypnal12@naver.com)
+유윤우 – [@티스토리 주소](https://frontend-development.tistory.com/) – [@이메일주소](skypnal12@naver.com)
