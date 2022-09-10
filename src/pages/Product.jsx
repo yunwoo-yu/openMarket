@@ -40,13 +40,12 @@ const Product = () => {
 
   return (
     <ProductsDetail
-      onURL={publicUrl}
-      onData={productData}
-      onAmount={productAmount}
-      onSetAmount={setProductAmount}
-      onPrice={getPriceWon}
-      onPlus={amountPlus}
-      onMinus={amountMinus}
+      urlData={publicUrl}
+      targetData={productData}
+      Amount={productAmount}
+      PriceWon={getPriceWon}
+      onClickPlus={amountPlus}
+      onClickMinus={amountMinus}
     />
   );
 };

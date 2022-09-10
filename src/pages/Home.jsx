@@ -24,7 +24,7 @@ const Home = () => {
   return (
     <main>
       <MainBanner />
-      <ProductsList onProduct={productList} />
+      <ProductsList productData={productList} />
     </main>
   );
 };
