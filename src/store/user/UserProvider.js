@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import UserContext from "./user-context";
 
 const UserProvider = (props) => {
   const initialToken = localStorage.getItem("token");
   const [token, setToken] = useState(initialToken);
-  localStorage.setItem("token", "zcxxcsacas");
 
   const userContext = {
     token,
