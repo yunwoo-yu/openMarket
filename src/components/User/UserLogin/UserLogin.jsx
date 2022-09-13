@@ -28,6 +28,10 @@ const UserLogin = ({ onClickType, userType }) => {
           <MediumButton>로그인</MediumButton>
         </form>
       </div>
+      <div>
+        <Link to="reg">회원가입</Link>
+        <Link to="reg">비밀번호 찾기</Link>
+      </div>
     </LoginWrapper>
   );
 };
