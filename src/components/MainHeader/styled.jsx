@@ -8,6 +8,14 @@ export const InnerHeader = styled(InnerContainer)`
   align-items: center;
   margin: 0 auto;
 
+  h1 {
+    width: 124px;
+
+    > img {
+      width: 100%;
+    }
+  }
+
   > form {
     width: 400px;
     height: 46px;

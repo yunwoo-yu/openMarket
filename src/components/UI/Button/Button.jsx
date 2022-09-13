@@ -10,4 +10,5 @@ export const MediumButton = styled.button`
   border: none;
   border-radius: 5px;
   color: #fff;
+  cursor: pointer;
 `;

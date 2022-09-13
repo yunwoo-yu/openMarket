@@ -3,6 +3,7 @@ import ProductsList from "../components/Products/ProductsList/ProductsList";
 import { getProductsList } from "../axios-api";
 import { useContext, useEffect } from "react";
 import ProductsContext from "../store/products/products-context";
+import MainHeader from "../components/MainHeader/MainHeader";
 
 const Home = () => {
   const productCtx = useContext(ProductsContext);
@@ -22,10 +23,13 @@ const Home = () => {
   }, []);
 
   return (
-    <main>
-      <MainBanner />
-      <ProductsList productData={productList} />
-    </main>
+    <>
+      <MainHeader />
+      <main>
+        <MainBanner />
+        <ProductsList productData={productList} />
+      </main>
+    </>
   );
 };
 
