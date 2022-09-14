@@ -1,13 +1,16 @@
 import MainBanner from "../components/MainBanner/MainBanner";
 import ProductsList from "../components/Products/ProductsList/ProductsList";
-import { getProductsList } from "../axios-api";
+import { getProductsList } from "../lib/api/axios-api";
 import { useContext, useEffect } from "react";
 import ProductsContext from "../store/products/products-context";
 import MainHeader from "../components/MainHeader/MainHeader";
+import UserContext from "../store/user/user-context";
 
-const Home = () => {
+const HomePage = () => {
   const productCtx = useContext(ProductsContext);
+  const userCtx = useContext(UserContext);
   const { productList, setProductsList } = productCtx;
+  const { token } = userCtx;
 
   const requestGetProductList = async () => {
     try {
@@ -24,7 +27,7 @@ const Home = () => {
 
   return (
     <>
-      <MainHeader />
+      <MainHeader ConfirmLogin={token} />
       <main>
         <MainBanner />
         <ProductsList productData={productList} />
@@ -33,4 +36,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;

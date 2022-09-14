@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
+import getImagePath from "../../lib/utils/getImagePath";
 import { HeaderWrapper } from "../UI/Layout/HeaderWrapper";
 import { InnerHeader } from "./styled";
 
-const MainHeader = () => {
+const MainHeader = ({ ConfirmLogin }) => {
   const publicUrl = process.env.PUBLIC_URL;
+  const nowUrl = window.location.pathname;
 
   return (
     <HeaderWrapper>
@@ -20,17 +22,27 @@ const MainHeader = () => {
           </button>
         </form>
         <div className="header_user_button">
-          <Link to="/cart">
-            <img
-              src={`${publicUrl}/assets/icon-shopping-cart.svg`}
-              alt="장바구니 아이콘"
-            />
+          <Link to="/cart" className={nowUrl === "/cart" ? "active" : ""}>
+            <img src={getImagePath()} alt="장바구니 아이콘" />
             <p>장바구니</p>
           </Link>
-          <Link to="/login">
-            <img src={`${publicUrl}/assets/icon-user.svg`} alt="유저 아이콘" />
-            <p>로그인</p>
-          </Link>
+          {ConfirmLogin ? (
+            <div className="mypage-btn">
+              <img
+                src={`${publicUrl}/assets/icon-user.svg`}
+                alt="유저 아이콘"
+              />
+              <p>마이페이지</p>
+            </div>
+          ) : (
+            <Link to="/login">
+              <img
+                src={`${publicUrl}/assets/icon-user.svg`}
+                alt="유저 아이콘"
+              />
+              <p>로그인</p>
+            </Link>
+          )}
         </div>
       </InnerHeader>
     </HeaderWrapper>

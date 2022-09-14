@@ -51,6 +51,13 @@ export const InnerHeader = styled(InnerContainer)`
 
     > a {
       width: 46px;
+
+      &.active {
+        p {
+          color: #21bf48;
+        }
+      }
+
       img {
         display: block;
         margin-left: 5px;
@@ -64,12 +71,33 @@ export const InnerHeader = styled(InnerContainer)`
         font-size: 12px;
         line-height: 14px;
         text-align: center;
+        color: #767676;
       }
     }
 
     > a:last-child {
       width: 56px;
       margin-left: 26px;
+    }
+
+    > div {
+      width: 56px;
+      padding: 0;
+      margin-left: 26px;
+      cursor: pointer;
+
+      img {
+        display: block;
+        margin: 0 auto;
+      }
+
+      p {
+        margin-top: 4px;
+        font-size: 12px;
+        line-height: 14px;
+        text-align: center;
+        color: #767676;
+      }
     }
   }
 `;

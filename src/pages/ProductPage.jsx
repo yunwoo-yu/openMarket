@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getProductsDetail } from "../axios-api";
+import { getProductsDetail } from "../lib/api/axios-api";
 import ProductsDetail from "../components/Products/ProductsDetail/ProductsDetail";
 
-const Product = () => {
+const ProductPage = () => {
   const [productData, setProductData] = useState({});
   const [productAmount, setProductAmount] = useState(1);
 
@@ -49,4 +49,4 @@ const Product = () => {
     />
   );
 };
-export default Product;
+export default ProductPage;

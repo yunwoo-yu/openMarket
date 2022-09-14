@@ -7,7 +7,7 @@ export const LoginWrapper = styled.section`
   flex-wrap: wrap;
   justify-content: center;
 
-  a {
+  > a {
     margin: 100px auto 70px;
     > h2 {
       width: 100%;
@@ -97,4 +97,31 @@ export const UserTypeTabWrapper = styled.div`
     z-index:300;
   }
   `}
+`;
+
+export const SignUpWrapper = styled.div`
+  margin-top: 30px;
+  > a {
+    font-size: 16px;
+    line-height: 20px;
+    position: relative;
+    color: #333;
+  }
+  > a:nth-child(1) {
+    margin-right: 14px;
+
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 1px;
+      height: 16px;
+      background-color: #333;
+      top: 5px;
+      right: -15px;
+    }
+  }
+  > a:nth-child(2) {
+    margin-left: 14px;
+  }
 `;

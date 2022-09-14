@@ -1,10 +1,16 @@
 import { Link } from "react-router-dom";
 import { MediumButton } from "../../UI/Button/Button";
-import { LoginWrapper, UserTypeTabWrapper } from "./styled";
+import { LoginWrapper, SignUpWrapper, UserTypeTabWrapper } from "./styled";
 
-const UserLogin = ({ onClickType, userType }) => {
+const UserLogin = ({
+  onClickType,
+  onClickLogin,
+  userType,
+  onChangeInput,
+  formData,
+}) => {
   const publicUrl = process.env.PUBLIC_URL;
-
+  const { username, password } = formData;
   return (
     <LoginWrapper>
       <Link to="/">
@@ -18,20 +24,29 @@ const UserLogin = ({ onClickType, userType }) => {
           <button onClick={() => onClickType("SELLER")}>판매회원 로그인</button>
         </UserTypeTabWrapper>
         <form className="login-form">
-          <input type="text" name="id" id="id" placeholder="아이디" />
+          <input
+            type="text"
+            name="username"
+            id="username"
+            placeholder="아이디"
+            value={username}
+            onChange={onChangeInput}
+          />
           <input
             type="password"
             name="password"
             id="password"
             placeholder="비밀번호"
+            onChange={onChangeInput}
+            value={password}
           />
-          <MediumButton>로그인</MediumButton>
+          <MediumButton onClick={onClickLogin}>로그인</MediumButton>
         </form>
       </div>
-      <div>
+      <SignUpWrapper>
         <Link to="reg">회원가입</Link>
         <Link to="reg">비밀번호 찾기</Link>
-      </div>
+      </SignUpWrapper>
     </LoginWrapper>
   );
 };
