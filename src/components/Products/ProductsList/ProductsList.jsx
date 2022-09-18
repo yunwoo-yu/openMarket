@@ -7,7 +7,7 @@ const ProductsList = ({ productData }) => {
     <InnerContainer>
       <ProductsWrap>
         {productData ? (
-          productData.map((item) => (
+          productData.results.map((item) => (
             <ProductsItem key={item.product_id} item={item} />
           ))
         ) : (
