@@ -16,13 +16,19 @@ yarn 설치 : `$ npm install yarn`
 
 - Front-End
 
-  - HTML5 / CSS3
   - SASS / styled-components / styled-reset
-  - React / React-router(v6) / React Context
-  - Axios
+  - React / JavaScript / React-router(v6) / Redux-toolkit
+  - React-query / Axios
+
+- Back-End
+- (부트캠프 제공)
 
 - Design
-  - figma ( 제공 )
+
+  - figma ( 부트캠프 제공 )
+
+- Tool
+- VScode
 
 ## STACK 선정 이유 🙆‍♂️
 
@@ -60,10 +66,11 @@ yarn 설치 : `$ npm install yarn`
 
 ## 업데이트 예정
 
-- (0.1.0 출시 이후 타입스크립트 및 recoil, react query
-  || redux rtk query 업데이트 예정)
+- 0.0.2 (22.09.27)
 
-* 0.0.1
+  - 기존 코드 삭제 redux, react-query 도입 결정
+
+- 0.0.1
   - 작업 진행 중
 
 ## 정보
