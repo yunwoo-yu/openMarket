@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import getImagePath from "../../lib/utils/getImagePath";
 import { HeaderWrapper } from "../UI/Layout/HeaderWrapper";
 import { InnerHeader } from "./styled";
 
@@ -23,7 +22,10 @@ const MainHeader = ({ ConfirmLogin }) => {
         </form>
         <div className="header_user_button">
           <Link to="/cart" className={nowUrl === "/cart" ? "active" : ""}>
-            <img src={getImagePath()} alt="장바구니 아이콘" />
+            <img
+              src={`${publicUrl}/assets/icon-shopping-cart.svg`}
+              alt="장바구니 아이콘"
+            />
             <p>장바구니</p>
           </Link>
           {ConfirmLogin ? (
