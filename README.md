@@ -21,14 +21,16 @@ yarn 설치 : `$ npm install yarn`
   - React-query / Axios
 
 - Back-End
-- (부트캠프 제공)
+
+  - (부트캠프 제공)
 
 - Design
 
   - figma ( 부트캠프 제공 )
 
 - Tool
-- VScode
+
+  - VScode
 
 ## STACK 선정 이유 🙆‍♂️
 
