@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { MediumButton } from "../../UI/Button/Button";
 import { LoginWrapper, SignUpWrapper, UserTypeTabWrapper } from "./styled";
 
-const UserLogin = () => {
+const UserLogin = ({ onClickType, setUserType }) => {
   const publicUrl = process.env.PUBLIC_URL;
 
   return (
@@ -13,9 +13,23 @@ const UserLogin = () => {
         </h2>
       </Link>
       <div className="form-box">
-        <UserTypeTabWrapper>
-          <button type="button">구매회원 로그인</button>
-          <button type="button">판매회원 로그인</button>
+        <UserTypeTabWrapper type={setUserType}>
+          <button
+            type="button"
+            onClick={() => {
+              onClickType("BUYER");
+            }}
+          >
+            구매회원 로그인
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              onClickType("SELLER");
+            }}
+          >
+            판매회원 로그인
+          </button>
         </UserTypeTabWrapper>
         <form className="login-form">
           <input

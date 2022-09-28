@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const Product = styled.li`
   width: 380px;
-  margin-right: 70px;
   margin-top: 78px;
   object-fit: cover;
 
