@@ -17,9 +17,9 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/products/:id" element={<ProductPage />} />
-            <Route path="login" element={<LoginPage />} />
-            <Route path="*" element={<NotFoundPage />} />
+            <Route path="/login" element={<LoginPage />} />
             <Route path="/cart" element={<CartPage />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </BrowserRouter>
         <ReactQueryDevtools />

@@ -1,10 +1,15 @@
 import { Link } from "react-router-dom";
-import { HeaderWrapper } from "../UI/Layout/HeaderWrapper";
-import { InnerHeader } from "./styled";
+import { HeaderWrapper, InnerHeader } from "./styled";
 
 const MainHeader = ({ ConfirmLogin }) => {
   const publicUrl = process.env.PUBLIC_URL;
   const nowUrl = window.location.pathname;
+
+  const getImgaePath = () => {
+    if (nowUrl === "/cart")
+      return `${publicUrl}/assets/icon-shopping-cart-2.svg`;
+    else return `${publicUrl}/assets/icon-shopping-cart.svg`;
+  };
 
   return (
     <HeaderWrapper>
@@ -22,10 +27,7 @@ const MainHeader = ({ ConfirmLogin }) => {
         </form>
         <div className="header_user_button">
           <Link to="/cart" className={nowUrl === "/cart" ? "active" : ""}>
-            <img
-              src={`${publicUrl}/assets/icon-shopping-cart.svg`}
-              alt="장바구니 아이콘"
-            />
+            <img src={getImgaePath()} alt="장바구니 아이콘" />
             <p>장바구니</p>
           </Link>
           {ConfirmLogin ? (

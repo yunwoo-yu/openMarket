@@ -1,7 +1,13 @@
 import styled from "styled-components";
-import { InnerContainer } from "../UI/Layout/InnerContainer";
+import { InnerWrapper } from "../UI/Layout/InnerWrapper";
 
-export const InnerHeader = styled(InnerContainer)`
+export const HeaderWrapper = styled.header`
+  width: 100%;
+  height: 90px;
+  box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.1);
+`;
+
+export const InnerHeader = styled(InnerWrapper)`
   height: 100%;
   display: flex;
   flex-wrap: wrap;

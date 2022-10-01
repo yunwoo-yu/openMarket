@@ -1,4 +1,4 @@
-import { InnerContainer } from "../../UI/Layout/InnerContainer";
+import { InnerWrapper } from "../../UI/Layout/InnerWrapper";
 import ProductsItem from "../ProductsItem/ProductsItem";
 import { ProductsWrap } from "./styled";
 
@@ -11,13 +11,13 @@ const ProductsList = ({ data, isLoading, isError, error }) => {
       </>
     );
   return (
-    <InnerContainer>
+    <InnerWrapper>
       <ProductsWrap>
         {data.results.map((item) => (
           <ProductsItem data={item} key={item.product_id} />
         ))}
       </ProductsWrap>
-    </InnerContainer>
+    </InnerWrapper>
   );
 };
 export default ProductsList;
