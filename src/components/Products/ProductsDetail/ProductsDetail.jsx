@@ -1,8 +1,9 @@
 import { InnerWrapper } from "../../UI/Layout/InnerWrapper";
+import Loading from "../../UI/Loading/Loading";
 import { DetailWrapper } from "./styled";
 
 const ProductsDetail = ({ data, isLoading, isError, error }) => {
-  if (isLoading) return <h2>로딩중!!!!!</h2>;
+  if (isLoading) return <Loading />;
   if (isError)
     return (
       <>

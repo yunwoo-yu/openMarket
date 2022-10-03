@@ -9,12 +9,12 @@ const instance = axios.create({
 
 export const getProductsList = async () => {
   const response = await instance.get(`/products`);
-  console.log(response);
   return response.data;
 };
 
 export const getProductsDetail = async (id) => {
   const response = await instance.get(`/products/${id}`);
+  console.log(response);
   return response.data;
 };
 
