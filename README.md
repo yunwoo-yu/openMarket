@@ -1,5 +1,7 @@
 # 오픈마켓 (<img src="public/assets/Logo-hodu.png" width="120"/>)
 
+
+
 > 안녕하세요! 👋 누구나 구매자, 판매자가 될 수 있는 오픈마켓 <img src="public/assets/Logo-hodu.png" width="120"/> 입니다.
 
 ## 설치 방법
@@ -69,7 +71,8 @@ yarn 설치 : `$ npm install yarn`
 ## 업데이트 예정
 
 - 0.0.2 (22.09.27)
-
+  
+  - 타입스크립트 & 리액트 쿼리 공부로 인해 프로젝트 중지 (22.10.03)
   - 기존 코드 삭제 redux, react-query 도입 결정
 
 - 0.0.1
