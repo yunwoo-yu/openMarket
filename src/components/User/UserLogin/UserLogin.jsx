@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { MediumButton } from "../../UI/Button/Button";
+import { Button } from "../../UI/Button/Button";
 import { LoginWrapper, SignUpWrapper, UserTypeTabWrapper } from "./styled";
 
 const UserLogin = ({ onClickType, setUserType }) => {
@@ -44,7 +44,9 @@ const UserLogin = ({ onClickType, setUserType }) => {
             id="password"
             placeholder="비밀번호"
           />
-          <MediumButton>로그인</MediumButton>
+          <Button btnSize="medium" width="480px">
+            로그인
+          </Button>
         </form>
       </div>
       <SignUpWrapper>

@@ -1,6 +1,4 @@
-import MainHeader from "../components/MainHeader/MainHeader";
-
 const CartPage = () => {
-  return <MainHeader />;
+  return <div>cartPage</div>;
 };
 export default CartPage;

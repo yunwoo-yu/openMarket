@@ -1,6 +1,5 @@
 import MainBanner from "../components/Banner/MainBanner";
 import ProductsList from "../components/Products/ProductsList/ProductsList";
-import MainHeader from "../components/MainHeader/MainHeader";
 import { useQuery } from "react-query";
 import { getProductsList } from "../lib/api/axios-api";
 
@@ -10,7 +9,6 @@ const HomePage = () => {
   );
   return (
     <>
-      <MainHeader />
       <main>
         <MainBanner />
         <ProductsList

@@ -2,7 +2,6 @@ import ProductsDetail from "../components/Products/ProductsDetail/ProductsDetail
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import { getProductsDetail } from "../lib/api/axios-api.js";
-import MainHeader from "../components/MainHeader/MainHeader.jsx";
 import { useState } from "react";
 
 const ProductPage = () => {
@@ -23,7 +22,6 @@ const ProductPage = () => {
 
   return (
     <>
-      <MainHeader />
       <ProductsDetail
         data={data}
         isLoading={isLoading}

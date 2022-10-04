@@ -27,21 +27,32 @@ const ProductsDetail = ({
         <InnerWrapper>
           <div className="product-data">
             <img src={data.image} alt="상품 이미지" />
-            <div>
+            <div className="detail-text-box">
               <p>{data.store_name}</p>
               <p>{data.product_name}</p>
-              <p>{data.price}</p>
+              <p>
+                <strong>{data.price}</strong>원
+              </p>
               <p>
                 {data.shipping_method} / {data.shipping_fee}
               </p>
-              <div className="quantitu-box">
+              <div className="quantity-box">
                 <button onClick={onClickMinus}>
-                  <img src={Minus} alt="" />
+                  <img src={Minus} alt="수량 감소" />
                 </button>
                 <span>{count}</span>
                 <button onClick={onClickPlus}>
-                  <img src={Plus} alt="" />
+                  <img src={Plus} alt="수량 증가" />
                 </button>
+              </div>
+              <div className="sum-box">
+                <p className="sum-price-text">총 상품 금액</p>
+                <p className="sum-quantity">
+                  총 수량<strong>{count}</strong>개
+                </p>
+                <p className="sum-price">
+                  <strong>{count * data.price}</strong>원
+                </p>
               </div>
             </div>
           </div>
