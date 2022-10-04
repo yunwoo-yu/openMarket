@@ -1,15 +1,14 @@
+import Logo from "../../../assets/Logo-hodu.png";
 import { Link } from "react-router-dom";
 import { Button } from "../../UI/Button/Button";
 import { LoginWrapper, SignUpWrapper, UserTypeTabWrapper } from "./styled";
 
 const UserLogin = ({ onClickType, setUserType }) => {
-  const publicUrl = process.env.PUBLIC_URL;
-
   return (
     <LoginWrapper>
       <Link to="/">
         <h2>
-          <img src={`${publicUrl}/assets/Logo-hodu.png`} alt="로고 이미지" />
+          <img src={Logo} alt="로고" />
         </h2>
       </Link>
       <div className="form-box">
@@ -44,7 +43,7 @@ const UserLogin = ({ onClickType, setUserType }) => {
             id="password"
             placeholder="비밀번호"
           />
-          <Button btnSize="medium" width="480px">
+          <Button size="medium" width="480px">
             로그인
           </Button>
         </form>

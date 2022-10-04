@@ -7,12 +7,21 @@ export const DetailWrapper = styled.section`
   .product-data {
     display: flex;
     gap: 50px;
-    img {
+    > img {
       width: 600px;
-      object-fit: contain;
+      height: 600px;
+      object-fit: cover;
     }
     .detail-text-box {
       width: 100%;
+
+      .store-name {
+        font-size: 18px;
+        line-height: 23px;
+        color: #767676;
+        margin-bottom: 16px;
+      }
+
       .quantity-box {
         display: flex;
         justify-content: center;

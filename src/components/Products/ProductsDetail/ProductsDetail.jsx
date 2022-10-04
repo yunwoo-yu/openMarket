@@ -28,9 +28,9 @@ const ProductsDetail = ({
           <div className="product-data">
             <img src={data.image} alt="상품 이미지" />
             <div className="detail-text-box">
-              <p>{data.store_name}</p>
-              <p>{data.product_name}</p>
-              <p>
+              <p className="store-name">{data.store_name}</p>
+              <p className="product-name">{data.product_name}</p>
+              <p className="product-price">
                 <strong>{data.price}</strong>원
               </p>
               <p>
