@@ -54,6 +54,8 @@ export const InnerHeader = styled(InnerWrapper)`
   .header_user_button {
     margin-left: auto;
     display: flex;
+    justify-content: center;
+    align-items: center;
 
     > a {
       width: 46px;
