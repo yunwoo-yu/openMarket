@@ -3,7 +3,16 @@ import { Link } from "react-router-dom";
 import { Button } from "../../UI/Button/Button";
 import { LoginWrapper, SignUpWrapper, UserTypeTabWrapper } from "./styled";
 
-const UserLogin = ({ onClickType, setUserType }) => {
+const UserLogin = ({
+  onClickType,
+  UserType,
+  onChange,
+  onSubmit,
+  formData,
+  errorMessage,
+}) => {
+  const { username, password } = formData;
+
   return (
     <LoginWrapper>
       <Link to="/">
@@ -12,7 +21,7 @@ const UserLogin = ({ onClickType, setUserType }) => {
         </h2>
       </Link>
       <div className="form-box">
-        <UserTypeTabWrapper type={setUserType}>
+        <UserTypeTabWrapper type={UserType}>
           <button
             type="button"
             onClick={() => {
@@ -35,15 +44,20 @@ const UserLogin = ({ onClickType, setUserType }) => {
             type="text"
             name="username"
             id="username"
+            value={username}
             placeholder="아이디"
+            onChange={onChange}
           />
           <input
             type="password"
             name="password"
             id="password"
+            value={password}
             placeholder="비밀번호"
+            onChange={onChange}
           />
-          <Button size="medium" width="480px">
+          <p>{errorMessage}</p>
+          <Button type="submit" onClick={onSubmit} size="medium" width="480px">
             로그인
           </Button>
         </form>

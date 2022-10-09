@@ -39,12 +39,24 @@ export const LoginWrapper = styled.section`
       border-bottom: 1px solid #c4c4c4;
       padding: 20px 0;
     }
-    input#id {
+    #username {
       margin-bottom: 6px;
     }
 
+    #password {
+      margin-bottom: 10px;
+    }
+
     > button {
-      margin-top: 36px;
+      margin-top: 26px;
+    }
+
+    p {
+      margin-top: 16px;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 20px;
+      color: #eb5757;
     }
   }
 `;

@@ -5,18 +5,18 @@ import { getProductsDetail } from "../lib/api/axios-api.js";
 import { useState } from "react";
 
 const ProductPage = () => {
-  const [count, setCount] = useState(1);
+  const [amount, setAmount] = useState(1);
   const { id } = useParams();
   const { data, isLoading, isError, error } = useQuery(["products", id], () =>
     getProductsDetail(id)
   );
 
   const countPlusHandler = () => {
-    setCount((prev) => prev + 1);
+    setAmount((prev) => prev + 1);
   };
   const countMiunsHandler = () => {
-    if (count > 1) {
-      setCount((prev) => prev - 1);
+    if (amount > 1) {
+      setAmount((prev) => prev - 1);
     }
   };
 
@@ -27,7 +27,7 @@ const ProductPage = () => {
         isLoading={isLoading}
         isError={isError}
         error={error}
-        count={count}
+        amount={amount}
         onClickPlus={countPlusHandler}
         onClickMinus={countMiunsHandler}
       />
