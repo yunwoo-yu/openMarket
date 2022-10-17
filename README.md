@@ -1,8 +1,8 @@
-# 오픈마켓 (<img src="public/assets/Logo-hodu.png" width="120"/>)
+# 오픈마켓 (<img src="src/assets/Logo-hodu.png" width="120"/>)
 
 
 
-> 안녕하세요! 👋 누구나 구매자, 판매자가 될 수 있는 오픈마켓 <img src="public/assets/Logo-hodu.png" width="120"/> 입니다.
+> 안녕하세요! 👋 누구나 구매자, 판매자가 될 수 있는 오픈마켓 <img src="src/assets/Logo-hodu.png" width="120"/> 입니다.
 
 ## 설치 방법
 
