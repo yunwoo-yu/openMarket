@@ -38,8 +38,9 @@ yarn 설치 : `$ npm install yarn`
 
 - 전역 상태관리
 
-  - context와 reduxRTK 중 고민 했지만 프로젝트의 규모가 크지 않음을 고려하여 context로 결정했습니다.
-  - recoil과 react query의 조합도 생각했지만 미숙하여 보류 ( 추후 리팩토링 가능성 있음 )
+  - ~~context와 reduxRTK 중 고민 했지만 프로젝트의 규모가 크지 않음을 고려하여 context로 결정했습니다.~~
+  - ~~recoil과 react query의 조합도 생각했지만 미숙하여 보류 ( 추후 리팩토링 가능성 있음 )~~
+  - 가장 보편화 되어 있는 리덕스를 도입하였고 많은 사람들이 불편함을 느끼는 비동기 처리를 react query를 도입하여 해결.
 
 - CSS - in - JS
   - button의 색상이나 width값만 props로 변경하여 컴포넌트의 재사용성을 높이고 싶어 결정했습니다.
