@@ -1,31 +1,30 @@
-import Logo from "../../../assets/Logo-hodu.png";
 import { Link } from "react-router-dom";
 import { Button } from "../../UI/Button/Button";
-import { LoginWrapper, SignUpWrapper, UserTypeTabWrapper } from "./styled";
+import { LoginWrapper, SignUpWrapper } from "./styled";
+import { UserTypeTabCard } from "../../UI/UserTypeTabCard/UserTypeTabCard";
+import Logo from "../../UI/Logo/Logo";
 
 const UserLogin = ({
-  onClickType,
   UserType,
   onChange,
   onSubmit,
   formData,
   errorMessage,
+  onTypeChange,
+  idRef,
+  passwordRef,
 }) => {
   const { username, password } = formData;
 
   return (
     <LoginWrapper>
-      <Link to="/">
-        <h2>
-          <img src={Logo} alt="로고" />
-        </h2>
-      </Link>
+      <Logo />
       <div className="form-box">
-        <UserTypeTabWrapper type={UserType}>
+        <UserTypeTabCard type={UserType}>
           <button
             type="button"
             onClick={() => {
-              onClickType("BUYER");
+              onTypeChange("BUYER");
             }}
           >
             구매회원 로그인
@@ -33,12 +32,12 @@ const UserLogin = ({
           <button
             type="button"
             onClick={() => {
-              onClickType("SELLER");
+              onTypeChange("SELLER");
             }}
           >
             판매회원 로그인
           </button>
-        </UserTypeTabWrapper>
+        </UserTypeTabCard>
         <form className="login-form">
           <input
             type="text"
@@ -47,6 +46,8 @@ const UserLogin = ({
             value={username}
             placeholder="아이디"
             onChange={onChange}
+            ref={idRef}
+            autoFocus
           />
           <input
             type="password"
@@ -54,6 +55,7 @@ const UserLogin = ({
             id="password"
             value={password}
             placeholder="비밀번호"
+            ref={passwordRef}
             onChange={onChange}
           />
           <p>{errorMessage}</p>
@@ -63,7 +65,7 @@ const UserLogin = ({
         </form>
       </div>
       <SignUpWrapper>
-        <Link to="reg">회원가입</Link>
+        <Link to="/signup">회원가입</Link>
         <Link to="reg">비밀번호 찾기</Link>
       </SignUpWrapper>
     </LoginWrapper>

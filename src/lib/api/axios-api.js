@@ -28,3 +28,8 @@ export const postUserLogin = async (formData) => {
   const response = await instance.post("/accounts/login/", formData);
   return response.data;
 };
+
+export const postUserLogOut = async (formData) => {
+  const response = await instance.post("/accounts/logout/");
+  return response.data;
+};

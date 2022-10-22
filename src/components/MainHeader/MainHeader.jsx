@@ -7,7 +7,13 @@ import Cart2 from "../../assets/icon-shopping-cart-2.svg";
 import { Link, NavLink } from "react-router-dom";
 import { HeaderWrapper, InnerHeader } from "./styled";
 
-const MainHeader = ({ token, pathName, onToggleUserMenu, userMenu }) => {
+const MainHeader = ({
+  token,
+  pathName,
+  onUserToggleMenu,
+  userMenu,
+  onLogOut,
+}) => {
   return (
     <HeaderWrapper>
       <InnerHeader>
@@ -31,9 +37,9 @@ const MainHeader = ({ token, pathName, onToggleUserMenu, userMenu }) => {
             <p>장바구니</p>
           </NavLink>
           {token ? (
-            <div className="mypage-btn" onClick={onToggleUserMenu}>
+            <div className="mypage-btn" onClick={onUserToggleMenu}>
               <img src={userMenu ? User2 : User} alt="유저 아이콘" />
-              <p>마이페이지</p>
+              <p className={userMenu ? "active" : ""}>마이페이지</p>
             </div>
           ) : (
             <Link to="/login">
@@ -44,9 +50,9 @@ const MainHeader = ({ token, pathName, onToggleUserMenu, userMenu }) => {
           {userMenu && (
             <ul className="user-menu">
               <li>
-                <Link to="">마이페이지</Link>
+                <Link to="/mypage">마이페이지</Link>
               </li>
-              <li>로그아웃</li>
+              <li onClick={onLogOut}>로그아웃</li>
             </ul>
           )}
         </div>

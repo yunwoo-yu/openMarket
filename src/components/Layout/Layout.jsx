@@ -1,15 +1,37 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
-import { Outlet, useLocation } from "react-router-dom";
+import { useMutation } from "react-query";
+import { useDispatch, useSelector } from "react-redux";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { postUserLogOut } from "../../lib/api/axios-api";
+import { getToken } from "../../store/slice/userSlice";
 import Footer from "../Footer/Footer";
 import MainHeader from "../MainHeader/MainHeader";
 
 const LayOut = () => {
   const token = useSelector((state) => state.user.token);
-  let location = useLocation().pathname;
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [userMenu, setUserMenu] = useState(false);
+  let location = useLocation().pathname;
 
-  const userToggleMenu = () => {
+  const mutation = useMutation(postUserLogOut, {
+    onSuccess(data) {
+      localStorage.removeItem("token");
+      dispatch(getToken(""));
+      alert(data.detail);
+      window.location.reload();
+      navigate("/");
+    },
+    onError(err) {
+      console.log(err);
+    },
+  });
+
+  const onLogoutHandler = () => {
+    mutation.mutate();
+  };
+
+  const onUserToggleMenu = () => {
     setUserMenu((prev) => !prev);
   };
 
@@ -19,7 +41,8 @@ const LayOut = () => {
         token={token}
         pathName={location}
         userMenu={userMenu}
-        onToggleUserMenu={userToggleMenu}
+        onLogOut={onLogoutHandler}
+        onUserToggleMenu={onUserToggleMenu}
       />
       <Outlet />
       {token && <Footer />}

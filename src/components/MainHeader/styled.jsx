@@ -106,6 +106,10 @@ export const InnerHeader = styled(InnerWrapper)`
         line-height: 14px;
         text-align: center;
         color: #767676;
+
+        &.active {
+          color: #21bf48;
+        }
       }
     }
     .user-menu {
