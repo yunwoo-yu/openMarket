@@ -1,4 +1,4 @@
-import { InnerWrapper } from "../../UI/Layout/InnerWrapper";
+import { InnerWrapper } from "../../UI/Wrapper/InnerWrapper";
 import Loading from "../../UI/Loading/Loading";
 import { DetailWrapper } from "./styled";
 import Plus from "../../../assets/icon-plus-line.svg";

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { InnerWrapper } from "../UI/Layout/InnerWrapper";
+import { InnerWrapper } from "../UI/Wrapper/InnerWrapper";
 
 export const HeaderWrapper = styled.header`
   width: 100%;
@@ -56,6 +56,7 @@ export const InnerHeader = styled(InnerWrapper)`
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 
     > a {
       width: 46px;
@@ -88,7 +89,7 @@ export const InnerHeader = styled(InnerWrapper)`
       margin-left: 26px;
     }
 
-    > div {
+    > .mypage-btn {
       width: 56px;
       padding: 0;
       margin-left: 26px;
@@ -105,6 +106,42 @@ export const InnerHeader = styled(InnerWrapper)`
         line-height: 14px;
         text-align: center;
         color: #767676;
+      }
+    }
+    .user-menu {
+      width: 130px;
+      height: 108px;
+      position: absolute;
+      bottom: -124px;
+      right: -28%;
+      z-index: 100;
+      text-align: center;
+      padding: 10px;
+      background-color: white;
+      box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25);
+      border-radius: 10px;
+      > li {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 20px;
+        color: #767676;
+        padding: 10px 0;
+        border-radius: 5px;
+        border: 1px solid transparent;
+
+        &:first-child {
+          margin-bottom: 8px;
+        }
+
+        &:hover {
+          color: #000;
+          border-color: #767676;
+          cursor: pointer;
+        }
+
+        > a {
+          color: inherit;
+        }
       }
     }
   }

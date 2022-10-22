@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useMutation } from "react-query";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import UserLogin from "../components/User/UserLogin/UserLogin";
 import useForm from "../hooks/useForm";
@@ -20,7 +20,6 @@ const LoginPage = () => {
   formData.login_type = type;
 
   const mutation = useMutation(postUserLogin, {
-    onMutate() {},
     onSuccess(data) {
       localStorage.setItem("token", data.token);
       dispatch(getToken(data.token));
@@ -35,6 +34,7 @@ const LoginPage = () => {
   const TabClickHandler = (type) => {
     setType(type);
   };
+
   const onSubmitHandler = (event) => {
     event.preventDefault();
     if (!formData.username) {
@@ -45,6 +45,7 @@ const LoginPage = () => {
     }
     mutation.mutate(formData);
   };
+
   return (
     <UserLogin
       onClickType={TabClickHandler}

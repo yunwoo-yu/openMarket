@@ -1,19 +1,13 @@
 import Logo from "../../assets/Logo-hodu.png";
 import Search from "../../assets/icon-search.svg";
 import User from "../../assets/icon-user.svg";
+import User2 from "../../assets/icon-user-2.svg";
 import Cart from "../../assets/icon-shopping-cart.svg";
 import Cart2 from "../../assets/icon-shopping-cart-2.svg";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { HeaderWrapper, InnerHeader } from "./styled";
 
-const MainHeader = ({ ConfirmLogin }) => {
-  const nowUrl = window.location.pathname;
-
-  const getImgaePath = () => {
-    if (nowUrl === "/cart") return Cart2;
-    else return Cart;
-  };
-
+const MainHeader = ({ token, pathName, onToggleUserMenu, userMenu }) => {
   return (
     <HeaderWrapper>
       <InnerHeader>
@@ -29,13 +23,16 @@ const MainHeader = ({ ConfirmLogin }) => {
           </button>
         </form>
         <div className="header_user_button">
-          <Link to="/cart" className={nowUrl === "/cart" ? "active" : ""}>
-            <img src={getImgaePath()} alt="장바구니 아이콘" />
+          <NavLink to="/cart">
+            <img
+              src={pathName !== "/cart" ? Cart : Cart2}
+              alt="장바구니 아이콘"
+            />
             <p>장바구니</p>
-          </Link>
-          {ConfirmLogin ? (
-            <div className="mypage-btn">
-              <img src={User} alt="유저 아이콘" />
+          </NavLink>
+          {token ? (
+            <div className="mypage-btn" onClick={onToggleUserMenu}>
+              <img src={userMenu ? User2 : User} alt="유저 아이콘" />
               <p>마이페이지</p>
             </div>
           ) : (
@@ -43,6 +40,14 @@ const MainHeader = ({ ConfirmLogin }) => {
               <img src={User} alt="유저 아이콘" />
               <p>로그인</p>
             </Link>
+          )}
+          {userMenu && (
+            <ul className="user-menu">
+              <li>
+                <Link to="">마이페이지</Link>
+              </li>
+              <li>로그아웃</li>
+            </ul>
           )}
         </div>
       </InnerHeader>

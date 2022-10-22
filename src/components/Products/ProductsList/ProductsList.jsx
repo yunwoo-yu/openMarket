@@ -1,5 +1,5 @@
-import { DefaultWrapper } from "../../UI/Layout/DefaultWrapper";
-import { InnerWrapper } from "../../UI/Layout/InnerWrapper";
+import { DefaultWrapper } from "../../UI/Wrapper/DefaultWrapper";
+import { InnerWrapper } from "../../UI/Wrapper/InnerWrapper";
 import Loading from "../../UI/Loading/Loading";
 import ProductsItem from "../ProductsItem/ProductsItem";
 import { ProductsWrap } from "./styled";
