@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const LogoWrapper = styled.article`
+export const LogoWrapper = styled.div`
   margin: ${(props) => props.margin || "100px auto 70px"};
   > a {
     width: 100%;

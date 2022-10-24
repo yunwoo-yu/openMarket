@@ -36,5 +36,9 @@ export const Button = styled.button`
   border-radius: 5px;
   color: ${(props) => props.color || "white"};
   cursor: pointer;
+
+  &:disabled {
+    background-color: #c4c4c4;
+  }
   ${({ size }) => setSize(size)}
 `;

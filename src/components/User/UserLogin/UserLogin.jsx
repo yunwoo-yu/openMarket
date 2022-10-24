@@ -5,7 +5,7 @@ import { UserTypeTabCard } from "../../UI/UserTypeTabCard/UserTypeTabCard";
 import Logo from "../../UI/Logo/Logo";
 
 const UserLogin = ({
-  UserType,
+  userType,
   onChange,
   onSubmit,
   formData,
@@ -18,9 +18,10 @@ const UserLogin = ({
 
   return (
     <LoginWrapper>
+      <h2 className="hidden">로그인 폼</h2>
       <Logo />
       <div className="form-box">
-        <UserTypeTabCard type={UserType}>
+        <UserTypeTabCard type={userType}>
           <button
             type="button"
             onClick={() => {

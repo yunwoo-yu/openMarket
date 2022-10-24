@@ -60,7 +60,7 @@ const LoginPage = () => {
         onTypeChange={setUserTypeChange}
         onChange={inputChangeHandler}
         formData={formData}
-        UserType={userType}
+        userType={userType}
         errorMessage={validation}
         onSubmit={onSubmitHandler}
       />
