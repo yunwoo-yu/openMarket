@@ -17,6 +17,7 @@ const setSize = (size) => {
     case "sm":
       return css`
         padding: 17px 0;
+        line-height: 20px;
       `;
     default:
       return css`
@@ -39,6 +40,7 @@ export const Button = styled.button`
 
   &:disabled {
     background-color: #c4c4c4;
+    cursor: not-allowed;
   }
   ${({ size }) => setSize(size)}
 `;

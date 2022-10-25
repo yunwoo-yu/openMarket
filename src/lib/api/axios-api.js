@@ -33,3 +33,10 @@ export const postUserLogOut = async (formData) => {
   const response = await instance.post("/accounts/logout/");
   return response.data;
 };
+export const postUserIdCheck = async (userId) => {
+  const response = await instance.post(
+    "/accounts/signup/valid/username/",
+    userId
+  );
+  return response.data;
+};

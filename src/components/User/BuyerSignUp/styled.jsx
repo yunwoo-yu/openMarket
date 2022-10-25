@@ -23,11 +23,11 @@ export const SignUpWrapper = styled.section`
         flex-wrap: wrap;
 
         &.name-box {
-          margin: 20px auto 4px;
+          margin: 50px auto 4px;
         }
 
-        &.phone-box {
-          justify-content: space-between;
+        &.company-box {
+          margin-top: 50px;
         }
 
         > label {
@@ -59,6 +59,11 @@ export const SignUpWrapper = styled.section`
           }
         }
 
+        button {
+          margin-left: auto;
+          height: 56px;
+        }
+
         /* .phone-number {
           width: 152px;
           height: 54px;
@@ -69,25 +74,16 @@ export const SignUpWrapper = styled.section`
           line-height: 20px;
           text-align: center;
         } */
-
-        > .check-btn {
-          width: 122px;
-          height: 54px;
-          border: none;
-          border-radius: 5px;
-          background: #21bf48;
-          font-weight: 500;
-          font-size: 16px;
-          line-height: 20px;
-          color: #fff;
-          margin-left: auto;
-        }
       }
       .error-message {
         font-size: 16px;
         line-height: 20px;
         color: #eb5757;
         margin-bottom: 12px;
+
+        &.check-active {
+          color: #21bf48;
+        }
       }
     }
     .check-box {
