@@ -12,7 +12,7 @@ const LayOut = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [userMenu, setUserMenu] = useState(false);
-  let location = useLocation().pathname;
+  const location = useLocation().pathname;
 
   const mutation = useMutation(postUserLogOut, {
     onSuccess(data) {

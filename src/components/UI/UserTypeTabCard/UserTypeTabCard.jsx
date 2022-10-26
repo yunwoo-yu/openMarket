@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const UserTypeTabCard = styled.div`
-  max-width: 550px;
+  width: 550px;
   margin: 0 auto;
   position: relative;
   top: 20px;

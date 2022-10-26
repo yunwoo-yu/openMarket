@@ -75,7 +75,7 @@ export const SignUpWrapper = styled.section`
           text-align: center;
         } */
       }
-      .error-message {
+      .errors-message {
         font-size: 16px;
         line-height: 20px;
         color: #eb5757;
