@@ -71,44 +71,59 @@ const SignUpPage = () => {
       setErrors({ ...errors, [event.target.name]: "필수 정보입니다." });
     }
   };
-  const userNameRegExp = /^[a-z]+[a-zA-Z0-9]{5,19}$/g.test(username);
-  const passwordRegExp = /^(?=.*[a-z])(?=.*[0-9]).{8,16}$/g.test(password);
+
+  const isValids = (target, targetName) => {
+    if (targetName === "username") {
+      return /^[a-z]+[a-zA-Z0-9]{5,19}$/g.test(target);
+    } else if (targetName === "password") {
+      return /^(?=.*[a-z])(?=.*[0-9]).{8,16}$/g.test(target);
+    } else if (targetName === "password2") {
+      return target !== password ? false : true;
+    } else if (targetName === "phone_number") {
+      return /^01([0|1|6|7|8|9])([0-9]{3,4})([0-9]{4})$/g.test(target);
+    }
+  };
 
   const onChangeHandler = (event) => {
+    const { name, value } = event.target;
+
     setValues({
       ...values,
-      [event.target.name]: event.target.value,
+      [name]: value,
     });
 
-    if (!userNameRegExp && event.target.name === "username") {
+    if (!isValids(value, name)) {
       setIsBlurs({
         ...isBlurs,
-        [event.target.name]: true,
+        [name]: true,
       });
-      return setErrors({
-        ...errors,
-        [event.target.name]:
-          "6자 이상 20자 이내의 영문 소문자, 대문자, 숫자만 사용 가능합니다.",
-      });
+      if (name === "username") {
+        setErrors({
+          ...errors,
+          [name]:
+            "6자 이상 20자 이내의 영문 소문자, 대문자, 숫자만 사용 가능합니다.",
+        });
+      } else if (name === "password") {
+        setErrors({
+          ...errors,
+          [name]: "비밀번호는 8자 이상, 영소문자를 포함해야 합니다.",
+        });
+      } else if (name === "password2" && value !== password) {
+        setErrors({
+          ...errors,
+          [name]: "비밀번호가 일치하지 않습니다.",
+        });
+      } else if (name === "phone_number") {
+        setErrors({
+          ...errors,
+          [name]:
+            "핸드폰번호는 01*으로 시작해야 하는 10~11자리 숫자여야 합니다.",
+        });
+      }
     } else {
       setErrors({
         ...errors,
-        [event.target.name]: "",
-      });
-    }
-    if (!passwordRegExp && event.target.name === "password") {
-      setIsBlurs({
-        ...isBlurs,
-        [event.target.name]: true,
-      });
-      return setErrors({
-        ...errors,
-        [event.target.name]: "비밀번호는 8자 이상, 영소문자를 포함해야 합니다.",
-      });
-    } else {
-      setErrors({
-        ...errors,
-        [event.target.name]: "",
+        [name]: "",
       });
     }
   };

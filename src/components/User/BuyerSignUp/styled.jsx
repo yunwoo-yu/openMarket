@@ -57,6 +57,10 @@ export const SignUpWrapper = styled.section`
           &.error-active {
             border-color: #eb5757;
           }
+
+          &.active {
+            border-color: #21bf48;
+          }
         }
 
         button {
