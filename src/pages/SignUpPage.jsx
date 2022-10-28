@@ -3,13 +3,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { UserTypeTabCard } from "../components/UI/UserTypeTabCard/UserTypeTabCard";
 import Logo from "../components/UI/Logo/Logo";
 import UserSignUp from "../components/User/BuyerSignUp/UserSignUp";
-import { postUserIdCheck } from "../lib/api/axios-api";
+import {
+  postCompanyRegistrationNumberCheck,
+  postUserIdCheck,
+} from "../lib/api/axios-api";
 import { setType } from "../store/slice/userSlice";
 import { useState } from "react";
+import { useRef } from "react";
 
 const SignUpPage = () => {
   const dispatch = useDispatch();
   const userType = useSelector((state) => state.user.type);
+  const idRef = useRef();
+  const [idDuplicateCheck, setIdDuplicateCheck] = useState("");
+  const [companyNumberCheck, setCompanyNumberCheck] = useState("");
   const [terms, setTerms] = useState(false);
   const [values, setValues] = useState({
     username: "",
@@ -38,27 +45,50 @@ const SignUpPage = () => {
     company_registration_number: "",
     store_name: "",
   });
-  const {
-    username,
-    password,
-    password2,
-    phone_number,
-    name,
-    company_registration_number,
-    store_name,
-  } = values;
+  const { password, username, company_registration_number } = values;
 
-  const mutation = useMutation(postUserIdCheck, {
-    onSuccess(data) {},
-    onError(err) {},
+  const idDuplicateCheckMutation = useMutation(postUserIdCheck, {
+    onSuccess(data) {
+      setIdDuplicateCheck(data.Success);
+    },
+    onError(err) {
+      setErrors({
+        ...errors,
+        username: err.response.data.FAIL_Message,
+      });
+      idRef.current.focus();
+    },
   });
+
+  const companyRegistrationNumberCheckMutation = useMutation(
+    postCompanyRegistrationNumberCheck,
+    {
+      onSuccess(data) {
+        console.log(data);
+        // setCompanyNumberCheck(data.Success);
+      },
+      onError(err) {
+        console.log(err);
+        // setErrors({
+        //   ...errors,
+        //   username: err.response.data.FAIL_Message,
+        // });
+      },
+    }
+  );
 
   const setUserTypeChange = (type) => {
     dispatch(setType(type));
   };
 
   const onCheckUserId = () => {
-    mutation.mutate();
+    idDuplicateCheckMutation.mutate({ username });
+  };
+
+  const onCheckCompanyNumber = () => {
+    companyRegistrationNumberCheckMutation.mutate({
+      company_registration_number,
+    });
   };
 
   const onBlurHandler = (event) => {
@@ -81,12 +111,18 @@ const SignUpPage = () => {
       return target !== password ? false : true;
     } else if (targetName === "phone_number") {
       return /^01([0|1|6|7|8|9])([0-9]{3,4})([0-9]{4})$/g.test(target);
+    } else if (targetName === "name") {
+      return target === "" ? false : true;
+    } else if (targetName === "company_registration_number") {
+      return /^[0-9]{10}$/g.test(target);
     }
   };
 
   const onChangeHandler = (event) => {
     const { name, value } = event.target;
 
+    setIdDuplicateCheck("");
+    setCompanyNumberCheck("");
     setValues({
       ...values,
       [name]: value,
@@ -119,12 +155,22 @@ const SignUpPage = () => {
           [name]:
             "핸드폰번호는 01*으로 시작해야 하는 10~11자리 숫자여야 합니다.",
         });
+      } else if (
+        userType === "SELLER" &&
+        name === "company_registration_number"
+      ) {
+        setErrors({
+          ...errors,
+          [name]: "사업자등록번호는 10자리로 이루어진 숫자입니다.",
+        });
       }
     } else {
       setErrors({
         ...errors,
         [name]: "",
       });
+    }
+    if (userType === "SELLER") {
     }
   };
 
@@ -159,7 +205,11 @@ const SignUpPage = () => {
         errorsData={errors}
         setTerms={setTerms}
         terms={terms}
+        idDuplicateCheck={idDuplicateCheck}
+        companyNumberCheck={companyNumberCheck}
+        idRef={idRef}
         onSubmit={onSubmitHandler}
+        onCompanyCheck={onCheckCompanyNumber}
         onIdCheck={onCheckUserId}
         onBlur={onBlurHandler}
         isBlur={isBlurs}

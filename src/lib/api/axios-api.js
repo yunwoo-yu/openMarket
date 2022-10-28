@@ -40,3 +40,11 @@ export const postUserIdCheck = async (userId) => {
   );
   return response.data;
 };
+
+export const postCompanyRegistrationNumberCheck = async (userId) => {
+  const response = await instance.post(
+    "/accounts/signup/valid/company_registration_number/",
+    userId
+  );
+  return response.data;
+};

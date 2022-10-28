@@ -6,6 +6,10 @@ const UserSignUp = ({
   errorsData,
   formData,
   terms,
+  idDuplicateCheck,
+  companyNumberCheck,
+  onCompanyCheck,
+  idRef,
   setTerms,
   isBlur,
   onIdCheck,
@@ -28,13 +32,23 @@ const UserSignUp = ({
               }`}
               onChange={onChange}
               onBlur={onBlur}
+              ref={idRef}
             />
-            <Button type="button" size="sm" onClick={onIdCheck} width="122px">
+            <Button
+              type="button"
+              size="sm"
+              disabled={errorsData.username}
+              onClick={onIdCheck}
+              width="122px"
+            >
               중복확인
             </Button>
           </div>
           {isBlur.username && (
             <p className={`errors-message`}>{errorsData.username}</p>
+          )}
+          {isBlur.username && !errorsData.username && (
+            <p className="success">{idDuplicateCheck}</p>
           )}
           <div className="input-box">
             <label htmlFor="regPassword">비밀번호</label>
@@ -119,6 +133,14 @@ const UserSignUp = ({
                   onChange={onChange}
                   onBlur={onBlur}
                 />
+                <Button
+                  type="button"
+                  size="sm"
+                  onClick={onCompanyCheck}
+                  width="122px"
+                >
+                  인증
+                </Button>
               </div>
               {isBlur.company_registration_number && (
                 <p className={`errors-message`}>
@@ -169,7 +191,12 @@ const UserSignUp = ({
             !formData.password2 ||
             !formData.name ||
             !formData.phone_number ||
-            !terms
+            !terms ||
+            errorsData.username ||
+            errorsData.password ||
+            errorsData.password2 ||
+            errorsData.name ||
+            errorsData.phone_number
           }
           width="100%"
           size="medium"

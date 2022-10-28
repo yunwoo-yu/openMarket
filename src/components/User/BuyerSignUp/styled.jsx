@@ -47,10 +47,14 @@ export const SignUpWrapper = styled.section`
           margin-bottom: 12px;
 
           &:focus {
-            outline: none;
+            outline: 1px solid #21bf48;
           }
 
           &#regUserId {
+            width: 346px;
+          }
+
+          &#companyRegistrationNumber {
             width: 346px;
           }
 
@@ -84,10 +88,12 @@ export const SignUpWrapper = styled.section`
         line-height: 20px;
         color: #eb5757;
         margin-bottom: 12px;
-
-        &.check-active {
-          color: #21bf48;
-        }
+      }
+      .success {
+        font-size: 16px;
+        line-height: 20px;
+        color: #21bf48;
+        margin-bottom: 12px;
       }
     }
     .check-box {
