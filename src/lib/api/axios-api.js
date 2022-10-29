@@ -48,3 +48,13 @@ export const postCompanyRegistrationNumberCheck = async (userId) => {
   );
   return response.data;
 };
+
+export const postSignUpBuyer = async (formData) => {
+  const response = await instance.post("/accounts/signup", formData);
+  return response.data;
+};
+
+export const postSignUpSeller = async (formData) => {
+  const response = await instance.post("/accounts/signup_seller/", formData);
+  return response.data;
+};

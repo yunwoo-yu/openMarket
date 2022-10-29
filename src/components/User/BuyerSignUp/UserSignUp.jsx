@@ -37,14 +37,14 @@ const UserSignUp = ({
             <Button
               type="button"
               size="sm"
-              disabled={errorsData.username}
+              disabled={!isBlur.username || errorsData.username}
               onClick={onIdCheck}
               width="122px"
             >
               중복확인
             </Button>
           </div>
-          {isBlur.username && (
+          {isBlur.username && !idDuplicateCheck && (
             <p className={`errors-message`}>{errorsData.username}</p>
           )}
           {isBlur.username && !errorsData.username && (
@@ -137,16 +137,24 @@ const UserSignUp = ({
                   type="button"
                   size="sm"
                   onClick={onCompanyCheck}
+                  disabled={
+                    !isBlur.company_registration_number ||
+                    errorsData.company_registration_number
+                  }
                   width="122px"
                 >
                   인증
                 </Button>
               </div>
-              {isBlur.company_registration_number && (
+              {isBlur.company_registration_number && !companyNumberCheck && (
                 <p className={`errors-message`}>
                   {errorsData.company_registration_number}
                 </p>
               )}
+              {isBlur.company_registration_number &&
+                !errorsData.company_registration_number && (
+                  <p className="success">{companyNumberCheck}</p>
+                )}
               <div className="input-box">
                 <label htmlFor="storeName">스토어 이름</label>
                 <input

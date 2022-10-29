@@ -5,6 +5,8 @@ import Logo from "../components/UI/Logo/Logo";
 import UserSignUp from "../components/User/BuyerSignUp/UserSignUp";
 import {
   postCompanyRegistrationNumberCheck,
+  postSignUpBuyer,
+  postSignUpSeller,
   postUserIdCheck,
 } from "../lib/api/axios-api";
 import { setType } from "../store/slice/userSlice";
@@ -27,15 +29,6 @@ const SignUpPage = () => {
     company_registration_number: "",
     store_name: "",
   });
-  const [isBlurs, setIsBlurs] = useState({
-    username: false,
-    password: false,
-    password2: false,
-    phone_number: false,
-    name: false,
-    company_registration_number: false,
-    store_name: false,
-  });
   const [errors, setErrors] = useState({
     username: "",
     password: "",
@@ -45,7 +38,25 @@ const SignUpPage = () => {
     company_registration_number: "",
     store_name: "",
   });
-  const { password, username, company_registration_number } = values;
+  const [isBlurs, setIsBlurs] = useState({
+    username: false,
+    password: false,
+    password2: false,
+    phone_number: false,
+    name: false,
+    company_registration_number: false,
+    store_name: false,
+  });
+
+  const {
+    username,
+    password,
+    password2,
+    phone_number,
+    name,
+    company_registration_number,
+    store_name,
+  } = values;
 
   const idDuplicateCheckMutation = useMutation(postUserIdCheck, {
     onSuccess(data) {
@@ -64,18 +75,50 @@ const SignUpPage = () => {
     postCompanyRegistrationNumberCheck,
     {
       onSuccess(data) {
-        console.log(data);
-        // setCompanyNumberCheck(data.Success);
+        setCompanyNumberCheck(data.Success);
       },
       onError(err) {
-        console.log(err);
-        // setErrors({
-        //   ...errors,
-        //   username: err.response.data.FAIL_Message,
-        // });
+        setErrors({
+          ...errors,
+          company_registration_number: err.response.data.FAIL_Message,
+        });
       },
     }
   );
+
+  const buyerSubmitMutation = useMutation(postSignUpBuyer, {
+    onSuccess(data) {
+      console.log(data);
+    },
+    onError(err) {
+      console.log(err);
+    },
+  });
+
+  const sellerSubmitMutation = useMutation(postSignUpSeller, {
+    onSuccess(data) {
+      console.log(data);
+    },
+    onError(err) {
+      console.log(err);
+    },
+  });
+
+  const isValids = (target, targetName) => {
+    if (targetName === "username") {
+      return /^[a-z]+[a-zA-Z0-9]{5,19}$/g.test(target);
+    } else if (targetName === "password") {
+      return /^(?=.*[a-z])(?=.*[0-9]).{8,16}$/g.test(target);
+    } else if (targetName === "password2") {
+      return target !== password ? false : true;
+    } else if (targetName === "phone_number") {
+      return /^01([0|1|6|7|8|9])([0-9]{3,4})([0-9]{4})$/g.test(target);
+    } else if (targetName === "name") {
+      return target === "" ? false : true;
+    } else if (targetName === "company_registration_number") {
+      return /^[0-9]{10}$/g.test(target);
+    }
+  };
 
   const setUserTypeChange = (type) => {
     dispatch(setType(type));
@@ -99,22 +142,6 @@ const SignUpPage = () => {
 
     if (!event.target.value) {
       setErrors({ ...errors, [event.target.name]: "필수 정보입니다." });
-    }
-  };
-
-  const isValids = (target, targetName) => {
-    if (targetName === "username") {
-      return /^[a-z]+[a-zA-Z0-9]{5,19}$/g.test(target);
-    } else if (targetName === "password") {
-      return /^(?=.*[a-z])(?=.*[0-9]).{8,16}$/g.test(target);
-    } else if (targetName === "password2") {
-      return target !== password ? false : true;
-    } else if (targetName === "phone_number") {
-      return /^01([0|1|6|7|8|9])([0-9]{3,4})([0-9]{4})$/g.test(target);
-    } else if (targetName === "name") {
-      return target === "" ? false : true;
-    } else if (targetName === "company_registration_number") {
-      return /^[0-9]{10}$/g.test(target);
     }
   };
 
@@ -176,6 +203,23 @@ const SignUpPage = () => {
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
+    userType === "BUYER"
+      ? buyerSubmitMutation.mutate({
+          username,
+          password,
+          password2,
+          phone_number,
+          name,
+        })
+      : sellerSubmitMutation.mutate({
+          username,
+          password,
+          password2,
+          phone_number,
+          name,
+          company_registration_number,
+          store_name,
+        });
   };
 
   return (
