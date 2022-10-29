@@ -58,7 +58,7 @@ const UserSignUp = ({
               id="regPassword"
               className={`${
                 isBlur.password && errorsData.password ? "error-active" : ""
-              }`}
+              } ${isBlur.password && !errorsData.password ? "check" : ""}`}
               onChange={onChange}
               onBlur={onBlur}
             />
@@ -74,7 +74,7 @@ const UserSignUp = ({
               name="password2"
               className={`${
                 isBlur.password2 && errorsData.password2 ? "error-active" : ""
-              }`}
+              } ${isBlur.password2 && !errorsData.password2 ? "check" : ""}`}
               onChange={onChange}
               onBlur={onBlur}
             />

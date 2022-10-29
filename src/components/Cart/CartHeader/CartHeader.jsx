@@ -1,3 +1,4 @@
+import { CheckBox } from "../../common/Input/CheckBox/CheckBox";
 import { CartHeaderWrapper } from "./styled";
 
 const CartHeader = () => {
@@ -5,7 +6,7 @@ const CartHeader = () => {
     <CartHeaderWrapper>
       <tr>
         <td>
-          <input type="checkbox" />
+          <CheckBox type="checkbox" />
         </td>
         <td>상품정보</td>
         <td>수량</td>

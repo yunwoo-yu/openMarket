@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import pwCheckOn from "../../../assets/icon-check-on.svg";
+import pwCheckOff from "../../../assets/icon-check-off.svg";
 
 export const SignUpWrapper = styled.section`
   max-width: 550px;
@@ -67,21 +69,21 @@ export const SignUpWrapper = styled.section`
           }
         }
 
+        #regPassword,
+        #regPasswordConfirm {
+          background-repeat: no-repeat;
+          background-position: center right 16px;
+          background-image: url(${pwCheckOff});
+
+          &.check {
+            background-image: url(${pwCheckOn});
+          }
+        }
+
         button {
           margin-left: auto;
           height: 56px;
         }
-
-        /* .phone-number {
-          width: 152px;
-          height: 54px;
-          border-radius: 5px;
-          border-color: #c4c4c4;
-          padding: 17px 16px;
-          font-size: 16px;
-          line-height: 20px;
-          text-align: center;
-        } */
       }
       .errors-message {
         font-size: 16px;
