@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { InnerWrapper } from "../UI/Wrapper/InnerWrapper";
+import { InnerWrapper } from "../common/Wrapper/InnerWrapper";
 
 export const HeaderWrapper = styled.header`
   width: 100%;

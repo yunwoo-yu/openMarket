@@ -1,7 +1,7 @@
-import ProductsDetail from "../components/Products/ProductsDetail/ProductsDetail.jsx";
+import ProductsDetail from "../../components/Products/ProductsDetail/ProductsDetail.jsx";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
-import { getProductsDetail } from "../lib/api/axios-api.js";
+import { getProductsDetail } from "../../lib/api/axios-api.js";
 import { useState } from "react";
 
 const ProductPage = () => {

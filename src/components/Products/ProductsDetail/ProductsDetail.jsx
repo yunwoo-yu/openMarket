@@ -1,9 +1,9 @@
-import { InnerWrapper } from "../../UI/Wrapper/InnerWrapper";
-import Loading from "../../UI/Loading/Loading";
+import { InnerWrapper } from "../../common/Wrapper/InnerWrapper";
+import Loading from "../../common/Loading/Loading";
 import { DetailWrapper } from "./styled";
 import Plus from "../../../assets/icon-plus-line.svg";
 import Minus from "../../../assets/icon-minus-line.svg";
-import { Button } from "../../UI/Button/Button";
+import { Button } from "../../common/Button/Button";
 
 const ProductsDetail = ({
   data,

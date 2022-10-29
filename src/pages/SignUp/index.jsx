@@ -1,15 +1,15 @@
 import { useMutation } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
-import { UserTypeTabCard } from "../components/UI/UserTypeTabCard/UserTypeTabCard";
-import Logo from "../components/UI/Logo/Logo";
-import UserSignUp from "../components/User/BuyerSignUp/UserSignUp";
+import { UserTypeTabCard } from "../../components/User/UserTypeTabCard/UserTypeTabCard";
+import Logo from "../../components/common/Logo/Logo";
+import UserSignUp from "../../components/User/UserSignUp/UserSignUp";
 import {
   postCompanyRegistrationNumberCheck,
   postSignUpBuyer,
   postSignUpSeller,
   postUserIdCheck,
-} from "../lib/api/axios-api";
-import { setType } from "../store/slice/userSlice";
+} from "../../lib/api/axios-api";
+import { setType } from "../../store/slice/userSlice";
 import { useState } from "react";
 import { useRef } from "react";
 

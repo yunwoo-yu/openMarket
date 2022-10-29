@@ -2,10 +2,10 @@ import { useRef, useState } from "react";
 import { useMutation } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import UserLogin from "../components/User/UserLogin/UserLogin";
-import useForm from "../hooks/useForm";
-import { postUserLogin } from "../lib/api/axios-api";
-import { getToken, setType } from "../store/slice/userSlice";
+import UserLogin from "../../components/User/UserLogin/UserLogin";
+import useForm from "../../hooks/useForm";
+import { postUserLogin } from "../../lib/api/axios-api";
+import { getToken, setType } from "../../store/slice/userSlice";
 const LoginPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -18,6 +18,7 @@ const LoginPage = () => {
     password: "",
     login_type: "",
   });
+
   formData.login_type = userType;
 
   const mutation = useMutation(postUserLogin, {
@@ -49,8 +50,6 @@ const LoginPage = () => {
     }
     mutation.mutate(formData);
   };
-
-  console.log(userType);
 
   return (
     <>

@@ -45,7 +45,6 @@ const LayOut = () => {
         onUserToggleMenu={onUserToggleMenu}
       />
       <Outlet />
-      {token && <Footer />}
     </>
   );
 };

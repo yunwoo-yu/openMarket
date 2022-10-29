@@ -1,6 +1,6 @@
-import { DefaultWrapper } from "../../UI/Wrapper/DefaultWrapper";
-import { InnerWrapper } from "../../UI/Wrapper/InnerWrapper";
-import Loading from "../../UI/Loading/Loading";
+import { DefaultWrapper } from "../../common/Wrapper/DefaultWrapper";
+import { InnerWrapper } from "../../common/Wrapper/InnerWrapper";
+import Loading from "../../common/Loading/Loading";
 import ProductsItem from "../ProductsItem/ProductsItem";
 import { ProductsWrap } from "./styled";
 

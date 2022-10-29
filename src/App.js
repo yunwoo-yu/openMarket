@@ -1,13 +1,13 @@
-import HomePage from "./pages/HomePage";
+import HomePage from "./pages/Home/index";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import NotFoundPage from "./pages/NotFountPage";
-import ProductPage from "./pages/ProductPage";
-import LoginPage from "./pages/LoginPage";
-import CartPage from "./pages/CartPage";
+import NotFoundPage from "./pages/NotFound/index";
+import ProductPage from "./pages/Product/index";
+import LoginPage from "./pages/Login/index";
+import CartPage from "./pages/Cart/index";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import LayOut from "./components/Layout/Layout";
-import SignUpPage from "./pages/SignUpPage";
+import SignUpPage from "./pages/SignUp/index";
 
 const queryClient = new QueryClient();
 

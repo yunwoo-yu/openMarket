@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import { Button } from "../../UI/Button/Button";
+import { Button } from "../../common/Button/Button";
 import { LoginWrapper, SignUpWrapper } from "./styled";
-import { UserTypeTabCard } from "../../UI/UserTypeTabCard/UserTypeTabCard";
-import Logo from "../../UI/Logo/Logo";
+import { UserTypeTabCard } from "../UserTypeTabCard/UserTypeTabCard";
+import Logo from "../../common/Logo/Logo";
 
 const UserLogin = ({
   userType,
