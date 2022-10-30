@@ -1,26 +1,10 @@
 import { InnerWrapper } from "../../common/Wrapper/InnerWrapper";
-import Loading from "../../common/Loading/Loading";
 import { DetailWrapper } from "./styled";
 import Plus from "../../../assets/icon-plus-line.svg";
 import Minus from "../../../assets/icon-minus-line.svg";
 import { Button } from "../../common/Button/Button";
 
-const ProductsDetail = ({
-  data,
-  isLoading,
-  isError,
-  error,
-  amount,
-  onClickPlus,
-  onClickMinus,
-}) => {
-  if (isLoading) return <Loading />;
-  if (isError)
-    return (
-      <>
-        <p>{error.response.data.detail}</p>
-      </>
-    );
+const ProductsDetail = ({ data, amount, onClickPlus, onClickMinus }) => {
   const convetedPrice = data.price
     .toString()
     .replace(/\B(?=(\d{3})+(?!\d))/g, ",");

@@ -6,13 +6,13 @@ const instance = axios.create({
   headers: { "Content-Type": "application/json" },
 });
 
-// const accessInstance = axios.create({
-//   baseURL: apiUrl,
-//   headers: {
-//     "Content-Type": "application/json",
-//     Authorization: ` ${localStorage.getItem("token")}`,
-//   },
-// });
+const accessInstance = axios.create({
+  baseURL: apiUrl,
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: `JWT ${localStorage.getItem("token")}`,
+  },
+});
 
 export const getProductsList = async () => {
   const response = await instance.get(`/products`);
@@ -56,5 +56,30 @@ export const postSignUpBuyer = async (formData) => {
 
 export const postSignUpSeller = async (formData) => {
   const response = await instance.post("/accounts/signup_seller/", formData);
+  return response.data;
+};
+
+export const getUserCart = async () => {
+  const cartItemDetails = [];
+  const response = await (await accessInstance.get("/cart/")).data.results;
+  const filterItem = await Promise.all(
+    response.map((item) => getProductsDetail(item.product_id))
+  );
+
+  cartItemDetails.push(...response);
+
+  const resultArray = cartItemDetails.map((item, idx) => {
+    return { ...item, ...filterItem[idx] };
+  });
+
+  return resultArray;
+};
+
+export const setUserCartActive = async (itemData) => {
+  const response = await accessInstance.put(`/cart/${itemData.cart_item_id}/`, {
+    product_id: itemData.product_id,
+    quantity: itemData.quantity,
+    is_active: itemData.is_active,
+  });
   return response.data;
 };
