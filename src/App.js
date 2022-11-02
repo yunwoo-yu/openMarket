@@ -34,7 +34,14 @@ function App() {
                 </PrivateRotuer>
               }
             />
-            <Route path="/signup" element={<SignUpPage />} />
+            <Route
+              path="/signup"
+              element={
+                <PrivateRotuer authenticated={accessToken}>
+                  <SignUpPage />
+                </PrivateRotuer>
+              }
+            />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </BrowserRouter>

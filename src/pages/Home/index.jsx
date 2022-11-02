@@ -4,8 +4,6 @@ import { useQuery } from "react-query";
 import { getProductsList } from "../../lib/api/axios-api";
 import { HomeWrapper } from "./styled";
 import Loading from "../../components/common/Loading/Loading";
-import { useSelector } from "react-redux";
-import { useEffect } from "react";
 
 const HomePage = () => {
   const { data, isLoading, isError, error } = useQuery(

@@ -48,6 +48,7 @@ const CartItem = ({ cartStateData, onToggleCheckBox }) => {
             : `${convetedShipping_fee}원`}
         </p>
       </td>
+      <td>{quantity}</td>
       <td></td>
     </CartItemWrapper>
   );

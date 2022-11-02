@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { postUserLogOut } from "../../lib/api/axios-api";
 import { getToken } from "../../store/slice/userSlice";
-import Footer from "../Footer/Footer";
 import MainHeader from "../MainHeader/MainHeader";
 
 const LayOut = () => {

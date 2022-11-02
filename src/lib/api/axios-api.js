@@ -16,12 +16,13 @@ const accessInstance = axios.create({
 
 accessInstance.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
-  console.log(token);
-  config.headers = {
-    ...config.headers,
-    Authorization: `JWT ${localStorage.getItem("token")}`,
-  };
-  return config;
+  if (token) {
+    config.headers = {
+      ...config.headers,
+      Authorization: `JWT ${localStorage.getItem("token")}`,
+    };
+    return config;
+  }
 });
 
 export const getProductsList = async () => {

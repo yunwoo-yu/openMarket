@@ -37,7 +37,9 @@ const CartPage = () => {
   });
 
   const mutationAllCheckBox = useMutation(setUserCartActive, {
-    onSuccess(res) {},
+    onSuccess(res) {
+      console.log(res);
+    },
     onError(err) {
       console.log(err);
     },
@@ -66,14 +68,13 @@ const CartPage = () => {
     setIsActive((prev) => !prev);
     setCartData((prev) => {
       return [...prev].map((item, idx) => {
-        console.log(item);
         return { ...item, is_active: !isActive };
       });
     });
   };
 
   if (isLoading) return <Loading />;
-  // if (isError) return <p>{error.response.data.detail}</p>;
+  if (isError) return <p>{error.response.data.detail}</p>;
 
   return (
     <CartWrapper>
