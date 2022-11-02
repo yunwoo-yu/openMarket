@@ -8,10 +8,14 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import LayOut from "./components/Layout/Layout";
 import SignUpPage from "./pages/SignUp/index";
+import PrivateRotuer from "./components/router/PrivateRouter";
+import { useSelector } from "react-redux";
 
 const queryClient = new QueryClient();
 
 function App() {
+  const accessToken = useSelector((state) => state.user.token);
+
   return (
     <>
       <QueryClientProvider client={queryClient}>
@@ -22,7 +26,14 @@ function App() {
               <Route path="/products/:id" element={<ProductPage />} />
               <Route path="/cart" element={<CartPage />} />
             </Route>
-            <Route path="/login?id=123#id=10" element={<LoginPage />} />
+            <Route
+              path="/login"
+              element={
+                <PrivateRotuer authenticated={accessToken}>
+                  <LoginPage />
+                </PrivateRotuer>
+              }
+            />
             <Route path="/signup" element={<SignUpPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
