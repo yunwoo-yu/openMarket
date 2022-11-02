@@ -9,7 +9,7 @@ import { HeaderWrapper, InnerHeader } from "./styled";
 
 const MainHeader = ({
   token,
-  pathName,
+  location,
   onUserToggleMenu,
   userMenu,
   onLogOut,
@@ -29,9 +29,9 @@ const MainHeader = ({
           </button>
         </form>
         <div className="header_user_button">
-          <NavLink to="/cart">
+          <NavLink className="cart-btn" to="/cart">
             <img
-              src={pathName !== "/cart" ? Cart : Cart2}
+              src={location.pathname !== "/cart" ? Cart : Cart2}
               alt="장바구니 아이콘"
             />
             <p>장바구니</p>
@@ -42,7 +42,7 @@ const MainHeader = ({
               <p className={userMenu ? "active" : ""}>마이페이지</p>
             </div>
           ) : (
-            <Link to="/login">
+            <Link className="login-btn" to="/login">
               <img src={User} alt="유저 아이콘" />
               <p>로그인</p>
             </Link>

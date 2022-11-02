@@ -73,7 +73,7 @@ const CartPage = () => {
   };
 
   if (isLoading) return <Loading />;
-  if (isError) return <p>{error.response.data.detail}</p>;
+  // if (isError) return <p>{error.response.data.detail}</p>;
 
   return (
     <CartWrapper>

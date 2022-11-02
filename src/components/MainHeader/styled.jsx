@@ -59,22 +59,12 @@ export const InnerHeader = styled(InnerWrapper)`
     position: relative;
 
     > a {
-      width: 46px;
-
       &.active {
         p {
           color: #21bf48;
         }
       }
 
-      img {
-        display: block;
-        margin-left: 5px;
-      }
-
-      &:last-child img {
-        margin: 0 auto;
-      }
       p {
         margin-top: 4px;
         font-size: 12px;
@@ -83,10 +73,30 @@ export const InnerHeader = styled(InnerWrapper)`
         color: #767676;
       }
     }
+    > .cart-btn {
+      width: 46px;
+      img {
+        display: block;
+        margin-left: 5px;
+      }
+    }
 
-    > a:last-child {
+    > .login-btn {
       width: 56px;
       margin-left: 26px;
+
+      img {
+        display: block;
+        margin: 0 auto;
+      }
+
+      > p {
+        margin-top: 4px;
+        font-size: 12px;
+        line-height: 14px;
+        text-align: center;
+        color: #767676;
+      }
     }
 
     > .mypage-btn {

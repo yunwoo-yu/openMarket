@@ -14,6 +14,16 @@ const accessInstance = axios.create({
   },
 });
 
+accessInstance.interceptors.request.use((config) => {
+  const token = localStorage.getItem("token");
+  console.log(token);
+  config.headers = {
+    ...config.headers,
+    Authorization: `JWT ${localStorage.getItem("token")}`,
+  };
+  return config;
+});
+
 export const getProductsList = async () => {
   const response = await instance.get(`/products`);
   return response.data;
@@ -50,7 +60,7 @@ export const postCompanyRegistrationNumberCheck = async (userId) => {
 };
 
 export const postSignUpBuyer = async (formData) => {
-  const response = await instance.post("/accounts/signup", formData);
+  const response = await instance.post("/accounts/signup/", formData);
   return response.data;
 };
 

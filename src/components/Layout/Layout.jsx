@@ -12,14 +12,14 @@ const LayOut = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [userMenu, setUserMenu] = useState(false);
-  const location = useLocation().pathname;
+
+  const location = useLocation();
 
   const mutation = useMutation(postUserLogOut, {
     onSuccess(data) {
       localStorage.removeItem("token");
-      dispatch(getToken(""));
-      alert(data.detail);
-      window.location.reload();
+      dispatch(getToken(null));
+      setUserMenu(false);
       navigate("/");
     },
     onError(err) {
@@ -39,7 +39,7 @@ const LayOut = () => {
     <>
       <MainHeader
         token={token}
-        pathName={location}
+        location={location}
         userMenu={userMenu}
         onLogOut={onLogoutHandler}
         onUserToggleMenu={onUserToggleMenu}

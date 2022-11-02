@@ -4,13 +4,12 @@ const initialState = {
   token,
   type: "BUYER",
 };
-
 const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
     getToken(state, action) {
-      state.token += action.payload;
+      state.token = action.payload;
     },
     setType(state, action) {
       state.type = action.payload;

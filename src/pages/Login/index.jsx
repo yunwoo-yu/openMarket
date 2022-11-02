@@ -25,7 +25,7 @@ const LoginPage = () => {
     onSuccess(data) {
       localStorage.setItem("token", data.token);
       dispatch(getToken(data.token));
-      navigate(-1);
+      navigate("/");
     },
     onError(err) {
       idRef.current.focus();
