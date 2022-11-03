@@ -12,10 +12,10 @@ const ProductPage = () => {
     getProductsDetail(id)
   );
 
-  const countPlusHandler = () => {
+  const onClickPlus = () => {
     setAmount((prev) => prev + 1);
   };
-  const countMiunsHandler = () => {
+  const onClickMinus = () => {
     if (amount > 1) {
       setAmount((prev) => prev - 1);
     }
@@ -28,17 +28,26 @@ const ProductPage = () => {
         <p>{error.response.data.detail}</p>
       </>
     );
+  const convetedPrice = data.price
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+  const convertedSum = (data.price * amount)
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
   return (
     <>
       <ProductsDetail
+        convetedPrice={convetedPrice}
+        convertedSum={convertedSum}
         data={data}
         isLoading={isLoading}
         isError={isError}
         error={error}
+        onClickPlus={onClickPlus}
+        onClickMinus={onClickMinus}
         amount={amount}
-        onClickPlus={countPlusHandler}
-        onClickMinus={countMiunsHandler}
       />
     </>
   );

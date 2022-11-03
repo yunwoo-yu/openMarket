@@ -1,7 +1,12 @@
 import CartItem from "../CartItem/CartItem";
 import { CartListWrapper } from "./styled";
 
-const CartList = ({ cartStateData, onToggleCheckBox }) => {
+const CartList = ({
+  cartStateData,
+  onToggleCheckBox,
+  onIncrement,
+  onDecrement,
+}) => {
   return (
     <CartListWrapper>
       {cartStateData.map((item) => (
@@ -9,6 +14,8 @@ const CartList = ({ cartStateData, onToggleCheckBox }) => {
           cartStateData={item}
           key={item.product_id}
           onToggleCheckBox={onToggleCheckBox}
+          onIncrement={onIncrement}
+          onDecrement={onDecrement}
         />
       ))}
     </CartListWrapper>

@@ -1,10 +1,13 @@
-import { useState } from "react";
-import { useMutation } from "react-query";
-import { setUserCartActive } from "../../../lib/api/axios-api";
 import { CheckBox } from "../../common/Input/CheckBox/CheckBox";
+import QuantityButton from "../../common/QuantityButton/QuantityButton";
 import { CartItemWrapper } from "./styled";
 
-const CartItem = ({ cartStateData, onToggleCheckBox }) => {
+const CartItem = ({
+  cartStateData,
+  onToggleCheckBox,
+  onIncrement,
+  onDecrement,
+}) => {
   const {
     is_active,
     product_id,
@@ -15,9 +18,9 @@ const CartItem = ({ cartStateData, onToggleCheckBox }) => {
     shipping_fee,
     shipping_method,
     store_name,
+    stock,
     price,
   } = cartStateData;
-
   const convetedPrice = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   const convetedShipping_fee = shipping_fee
     .toString()
@@ -48,7 +51,18 @@ const CartItem = ({ cartStateData, onToggleCheckBox }) => {
             : `${convetedShipping_fee}원`}
         </p>
       </td>
-      <td>{quantity}</td>
+      <td>
+        <QuantityButton
+          num={quantity}
+          maxNum={stock}
+          onClickMinus={() => {
+            onDecrement(cart_item_id);
+          }}
+          onClickPlus={() => {
+            onIncrement(cart_item_id);
+          }}
+        />
+      </td>
       <td></td>
     </CartItemWrapper>
   );

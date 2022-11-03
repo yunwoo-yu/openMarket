@@ -35,15 +35,49 @@ const CartPage = () => {
       console.log(err);
     },
   });
-
-  const mutationAllCheckBox = useMutation(setUserCartActive, {
+  const Incrementmutation = useMutation(setUserCartActive, {
     onSuccess(res) {
-      console.log(res);
+      const cartItemResultIdx = cartData.findIndex(
+        (el) => el.product_id === res.product_id
+      );
+      setCartData((prev) => {
+        return [...prev].map((item, idx) => {
+          return idx === cartItemResultIdx
+            ? {
+                ...cartData[cartItemResultIdx],
+                quantity: cartData[cartItemResultIdx].quantity + 1,
+              }
+            : item;
+        });
+      });
     },
     onError(err) {
       console.log(err);
     },
   });
+  const Decrementmutation = useMutation(setUserCartActive, {
+    onSuccess(res) {
+      const cartItemResultIdx = cartData.findIndex(
+        (el) => el.product_id === res.product_id
+      );
+
+      setCartData((prev) => {
+        return [...prev].map((item, idx) => {
+          return idx === cartItemResultIdx
+            ? {
+                ...cartData[cartItemResultIdx],
+                quantity: cartData[cartItemResultIdx].quantity - 1,
+              }
+            : item;
+        });
+      });
+    },
+    onError(err) {
+      console.log(err);
+    },
+  });
+
+  const mutationAllCheckBox = useMutation(setUserCartActive);
 
   const onToggleCheckBox = (id) => {
     const cartItemIdx = cartData.findIndex((el) => el.cart_item_id === id);
@@ -53,6 +87,28 @@ const CartPage = () => {
       product_id: cartData[cartItemIdx].product_id,
       quantity: cartData[cartItemIdx].quantity,
       is_active: !cartData[cartItemIdx].is_active,
+    });
+  };
+
+  const onClickIncrement = (id) => {
+    const cartItemIdx = cartData.findIndex((el) => el.cart_item_id === id);
+    console.log(cartItemIdx);
+    Incrementmutation.mutate({
+      cart_item_id: cartData[cartItemIdx].cart_item_id,
+      product_id: cartData[cartItemIdx].product_id,
+      quantity: cartData[cartItemIdx].quantity + 1,
+      is_active: cartData[cartItemIdx].is_active,
+    });
+  };
+
+  const onClickDecrement = (id) => {
+    const cartItemIdx = cartData.findIndex((el) => el.cart_item_id === id);
+
+    Decrementmutation.mutate({
+      cart_item_id: cartData[cartItemIdx].cart_item_id,
+      product_id: cartData[cartItemIdx].product_id,
+      quantity: cartData[cartItemIdx].quantity - 1,
+      is_active: cartData[cartItemIdx].is_active,
     });
   };
 
@@ -88,6 +144,8 @@ const CartPage = () => {
         <CartList
           cartStateData={cartData}
           onToggleCheckBox={onToggleCheckBox}
+          onIncrement={onClickIncrement}
+          onDecrement={onClickDecrement}
         />
       </TableWrapper>
     </CartWrapper>

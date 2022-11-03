@@ -1,18 +1,16 @@
 import { InnerWrapper } from "../../common/Wrapper/InnerWrapper";
 import { DetailWrapper } from "./styled";
-import Plus from "../../../assets/icon-plus-line.svg";
-import Minus from "../../../assets/icon-minus-line.svg";
 import { Button } from "../../common/Button/Button";
+import QuantityButton from "../../common/QuantityButton/QuantityButton";
 
-const ProductsDetail = ({ data, amount, onClickPlus, onClickMinus }) => {
-  const convetedPrice = data.price
-    .toString()
-    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-
-  const convertedSum = (data.price * amount)
-    .toString()
-    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-
+const ProductsDetail = ({
+  data,
+  amount,
+  convertedSum,
+  convetedPrice,
+  onClickMinus,
+  onClickPlus,
+}) => {
   return (
     <>
       <DetailWrapper>
@@ -29,15 +27,12 @@ const ProductsDetail = ({ data, amount, onClickPlus, onClickMinus }) => {
               <p className="delivery">
                 {data.shipping_method} / {data.shipping_fee}
               </p>
-              <div className="quantity-box">
-                <button onClick={onClickMinus}>
-                  <img src={Minus} alt="수량 감소" />
-                </button>
-                <span>{amount}</span>
-                <button onClick={onClickPlus}>
-                  <img src={Plus} alt="수량 증가" />
-                </button>
-              </div>
+              <QuantityButton
+                num={amount}
+                maxNum={data.stock}
+                onClickMinus={onClickMinus}
+                onClickPlus={onClickPlus}
+              />
               <div className="sum-box">
                 <p className="sum-price-text">총 상품 금액</p>
                 <p className="sum-quantity">

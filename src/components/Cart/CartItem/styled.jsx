@@ -10,6 +10,7 @@ export const CartItemWrapper = styled.tr`
   border-radius: 10px;
 
   .text-box {
+    width: 466px;
     height: 100%;
     margin-left: 36px;
     text-align: left;
