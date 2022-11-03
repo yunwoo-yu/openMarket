@@ -7,15 +7,29 @@ export const CartHeaderWrapper = styled.thead`
   display: flex;
   align-items: center;
   margin-bottom: 35px;
+  box-sizing: border-box;
+  padding: 19px 131px 19px 30px;
   tr {
+    box-sizing: border-box;
+    display: block;
     width: 100%;
-    padding: 0 131px 0 30px;
-    display: flex;
-    justify-content: space-between;
 
     td {
+      box-sizing: border-box;
+      display: inline-block;
       font-size: 18px;
       line-height: 23px;
+      vertical-align: middle;
+
+      &:first-child {
+        margin-right: 314px;
+      }
+      &:nth-child(2) {
+        margin-right: 375px;
+      }
+      &:nth-child(3) {
+        margin-right: 237px;
+      }
     }
   }
 `;

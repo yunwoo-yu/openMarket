@@ -1,6 +1,7 @@
 import { CheckBox } from "../../common/Input/CheckBox/CheckBox";
 import QuantityButton from "../../common/QuantityButton/QuantityButton";
 import { CartItemWrapper } from "./styled";
+import { Button } from "../../common/Button/Button";
 
 const CartItem = ({
   cartStateData,
@@ -22,6 +23,9 @@ const CartItem = ({
     price,
   } = cartStateData;
   const convetedPrice = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  const convetedTotalPrice = (quantity * price)
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   const convetedShipping_fee = shipping_fee
     .toString()
     .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -51,7 +55,7 @@ const CartItem = ({
             : `${convetedShipping_fee}원`}
         </p>
       </td>
-      <td>
+      <td className="quantity-btn">
         <QuantityButton
           num={quantity}
           maxNum={stock}
@@ -63,7 +67,10 @@ const CartItem = ({
           }}
         />
       </td>
-      <td></td>
+      <td className="order-box">
+        <p>{convetedTotalPrice}원</p>
+        <Button>주문하기</Button>
+      </td>
     </CartItemWrapper>
   );
 };

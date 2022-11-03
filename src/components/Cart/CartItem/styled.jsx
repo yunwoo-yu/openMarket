@@ -9,8 +9,18 @@ export const CartItemWrapper = styled.tr`
   border: 2px solid #e0e0e0;
   border-radius: 10px;
 
+  td {
+    > img {
+      width: 160px;
+      height: 160px;
+      object-fit: cover;
+      margin-left: 40px;
+      border-radius: 10px;
+    }
+  }
+
   .text-box {
-    width: 466px;
+    width: 418px;
     height: 100%;
     margin-left: 36px;
     text-align: left;
@@ -39,13 +49,23 @@ export const CartItemWrapper = styled.tr`
     }
   }
 
-  td {
-    > img {
-      width: 160px;
-      height: 160px;
-      object-fit: cover;
-      margin-left: 40px;
-      border-radius: 10px;
+  .order-box {
+    margin-left: 145px;
+
+    > p {
+      text-align: center;
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 23px;
+      color: #eb5757;
+      margin-bottom: 26px;
     }
+    > button {
+      width: 130px;
+    }
+  }
+
+  .quantity-btn {
+    margin-left: 40px;
   }
 `;

@@ -103,13 +103,14 @@ const CartPage = () => {
 
   const onClickDecrement = (id) => {
     const cartItemIdx = cartData.findIndex((el) => el.cart_item_id === id);
-
-    Decrementmutation.mutate({
-      cart_item_id: cartData[cartItemIdx].cart_item_id,
-      product_id: cartData[cartItemIdx].product_id,
-      quantity: cartData[cartItemIdx].quantity - 1,
-      is_active: cartData[cartItemIdx].is_active,
-    });
+    if (cartData[cartItemIdx].quantity > 1) {
+      Decrementmutation.mutate({
+        cart_item_id: cartData[cartItemIdx].cart_item_id,
+        product_id: cartData[cartItemIdx].product_id,
+        quantity: cartData[cartItemIdx].quantity - 1,
+        is_active: cartData[cartItemIdx].is_active,
+      });
+    }
   };
 
   const onToggleCheckBoxAll = () => {
