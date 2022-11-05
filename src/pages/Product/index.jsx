@@ -21,6 +21,16 @@ const ProductPage = () => {
     },
   });
 
+  console.log(data);
+
+  const onClickAddProductToCart = () => {
+    mutation.mutate({
+      product_id: data.product_id,
+      quantity: amount,
+      check: true,
+    });
+  };
+
   const onClickPlus = () => {
     setAmount((prev) => prev + 1);
   };
@@ -56,6 +66,7 @@ const ProductPage = () => {
         error={error}
         onClickPlus={onClickPlus}
         onClickMinus={onClickMinus}
+        onClickCartItem={onClickAddProductToCart}
         amount={amount}
       />
     </>

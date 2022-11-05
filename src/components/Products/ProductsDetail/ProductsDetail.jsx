@@ -10,6 +10,7 @@ const ProductsDetail = ({
   convetedPrice,
   onClickMinus,
   onClickPlus,
+  onClickCartItem,
 }) => {
   return (
     <>
@@ -46,7 +47,12 @@ const ProductsDetail = ({
                 <Button width="416px" size="medium">
                   바로 구매
                 </Button>
-                <Button width="200px" size="medium" backColor="#767676">
+                <Button
+                  onClick={onClickCartItem}
+                  width="200px"
+                  size="medium"
+                  backColor="#767676"
+                >
                   장바구니
                 </Button>
               </div>

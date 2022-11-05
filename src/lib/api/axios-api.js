@@ -96,10 +96,6 @@ export const setUserCartActive = async (itemData) => {
 };
 
 export const postCartItem = async (productData) => {
-  const response = await accessInstance.post("/cart/", {
-    product_id: productData.product_id,
-    quantity: productData.quantity,
-    check: productData.check,
-  });
+  const response = await accessInstance.post("/cart/", productData);
   return response.data;
 };
