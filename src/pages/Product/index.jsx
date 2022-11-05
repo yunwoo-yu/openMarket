@@ -1,7 +1,7 @@
 import ProductsDetail from "../../components/Products/ProductsDetail/ProductsDetail.jsx";
-import { useQuery } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import { useParams } from "react-router-dom";
-import { getProductsDetail } from "../../lib/api/axios-api.js";
+import { getProductsDetail, postCartItem } from "../../lib/api/axios-api.js";
 import { useState } from "react";
 import Loading from "../../components/common/Loading/Loading.jsx";
 
@@ -11,6 +11,15 @@ const ProductPage = () => {
   const { data, isLoading, isError, error } = useQuery(["products", id], () =>
     getProductsDetail(id)
   );
+
+  const mutation = useMutation(postCartItem, {
+    onSuccess(data) {
+      console.log(data);
+    },
+    onError(err) {
+      console.log(err);
+    },
+  });
 
   const onClickPlus = () => {
     setAmount((prev) => prev + 1);

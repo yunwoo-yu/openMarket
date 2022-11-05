@@ -5,6 +5,7 @@ import { useMutation, useQuery } from "react-query";
 import { getUserCart, setUserCartActive } from "../../lib/api/axios-api";
 import Loading from "../../components/common/Loading/Loading";
 import { useState } from "react";
+import CartTotalPrice from "../../components/Cart/CartTotalPrice/CartTotalPrice";
 
 const CartPage = () => {
   const { data, isLoading, isError, error } = useQuery("cart", getUserCart, {
@@ -14,6 +15,7 @@ const CartPage = () => {
   });
   const [cartData, setCartData] = useState([]);
   const [isActive, setIsActive] = useState(false);
+
   const mutation = useMutation(setUserCartActive, {
     onSuccess(res) {
       const cartItemResultIdx = cartData.findIndex(
@@ -124,12 +126,24 @@ const CartPage = () => {
     });
     setIsActive((prev) => !prev);
     setCartData((prev) => {
-      return [...prev].map((item, idx) => {
+      return [...prev].map((item) => {
         return { ...item, is_active: !isActive };
       });
     });
   };
 
+  const sumCartItem = cartData.reduce(
+    (acc, cur) => {
+      if (cur.is_active) {
+        return (acc = {
+          price: acc.price + cur.price * cur.quantity,
+          shipping_fee: acc.shipping_fee + cur.shipping_fee,
+        });
+      }
+      return acc;
+    },
+    { price: 0, shipping_fee: 0 }
+  );
   if (isLoading) return <Loading />;
   if (isError) return <p>{error.response.data.detail}</p>;
 
@@ -149,6 +163,7 @@ const CartPage = () => {
           onDecrement={onClickDecrement}
         />
       </TableWrapper>
+      <CartTotalPrice sumCartItem={sumCartItem} />
     </CartWrapper>
   );
 };
