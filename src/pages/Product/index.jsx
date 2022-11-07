@@ -1,6 +1,6 @@
 import ProductsDetail from "../../components/Products/ProductsDetail/ProductsDetail.jsx";
 import { useMutation, useQuery } from "react-query";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   getProductsDetail,
   getUserCart,
@@ -18,17 +18,19 @@ const ProductPage = () => {
   const { data, isLoading, isError, error } = useQuery(["products", id], () =>
     getProductsDetail(id)
   );
-
   const { data: cartData } = useQuery("cart", getUserCart);
-  const mutation = useMutation(postCartItem, {
+
+  const addCartItemMutation = useMutation(postCartItem, {
     onSuccess(data) {
-      console.log(data);
       setIsModal(true);
     },
     onError(err) {
       console.log(err);
+      alert(`${err.response.data.FAIL_message} 현재 재고 : ${data.stock}
+      `);
     },
   });
+
   const isCartItemCheck = () => {
     const isCartItem = cartData.filter(
       (item) => item.product_id === data.product_id
@@ -37,22 +39,29 @@ const ProductPage = () => {
     return isCartItem;
   };
 
+  const onClickProductOrder = () => {
+    const orderData = {
+      data,
+      order_kind: "direct",
+    };
+  };
+
   const onClickAddProductToCart = () => {
-    mutation.mutate({
+    addCartItemMutation.mutate({
       product_id: data.product_id,
       quantity: amount,
       check: isCartItemCheck() ? true : false,
     });
   };
 
-  const onClickPlus = () => {
-    setAmount((prev) => prev + 1);
-  };
-
-  const onClickMinus = () => {
-    if (amount > 1) {
-      setAmount((prev) => prev - 1);
+  const onClickQuantity = (type) => {
+    if (type === "increment") {
+      setAmount((prev) => prev + 1);
     }
+    if (type === "decrement")
+      if (amount > 1) {
+        setAmount((prev) => prev - 1);
+      }
   };
 
   if (isLoading) return <Loading />;
@@ -103,8 +112,7 @@ const ProductPage = () => {
         isLoading={isLoading}
         isError={isError}
         error={error}
-        onClickPlus={onClickPlus}
-        onClickMinus={onClickMinus}
+        onClickQuantity={onClickQuantity}
         onClickCartItem={onClickAddProductToCart}
         amount={amount}
       />

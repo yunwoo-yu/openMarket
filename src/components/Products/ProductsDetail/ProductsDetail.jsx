@@ -8,8 +8,7 @@ const ProductsDetail = ({
   amount,
   convertedSum,
   convetedPrice,
-  onClickMinus,
-  onClickPlus,
+  onClickQuantity,
   onClickCartItem,
 }) => {
   return (
@@ -31,8 +30,12 @@ const ProductsDetail = ({
               <QuantityButton
                 num={amount}
                 maxNum={data.stock}
-                onClickMinus={onClickMinus}
-                onClickPlus={onClickPlus}
+                onClickMinus={() => {
+                  onClickQuantity("decrement");
+                }}
+                onClickPlus={() => {
+                  onClickQuantity("increment");
+                }}
               />
               <div className="sum-box">
                 <p className="sum-price-text">총 상품 금액</p>

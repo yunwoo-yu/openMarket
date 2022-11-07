@@ -24,6 +24,7 @@ const LoginPage = () => {
   const mutation = useMutation(postUserLogin, {
     onSuccess(data) {
       localStorage.setItem("token", data.token);
+      localStorage.setItem("usertype", userType);
       dispatch(getToken(data.token));
       navigate("/");
     },
