@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const CartHeaderWrapper = styled.thead`
+export const CartHeaderWrapper = styled.nav`
   width: 100%;
   height: 60px;
   background: #f2f2f2;
@@ -9,12 +9,13 @@ export const CartHeaderWrapper = styled.thead`
   margin-bottom: 35px;
   box-sizing: border-box;
   padding: 19px 131px 19px 30px;
-  tr {
+  border-radius: 10px;
+  ul {
     box-sizing: border-box;
     display: block;
     width: 100%;
 
-    td {
+    li {
       box-sizing: border-box;
       display: inline-block;
       font-size: 18px;

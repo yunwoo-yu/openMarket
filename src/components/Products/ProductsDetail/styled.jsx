@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const DetailWrapper = styled.section`
-  margin-top: 80px;
+  width: 1280px;
+  margin: 80px auto 0;
   display: flex;
 
   .product-data {
@@ -13,7 +14,7 @@ export const DetailWrapper = styled.section`
       object-fit: cover;
     }
     .detail-text-box {
-      width: 100%;
+      width: 630px;
 
       .store-name {
         font-size: 18px;
@@ -25,6 +26,9 @@ export const DetailWrapper = styled.section`
         font-size: 36px;
         line-height: 45px;
         margin-bottom: 20px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
       }
       .product-price {
         font-weight: 400;

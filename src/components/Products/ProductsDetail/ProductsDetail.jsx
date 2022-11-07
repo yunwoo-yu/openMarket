@@ -48,6 +48,7 @@ const ProductsDetail = ({
                   바로 구매
                 </Button>
                 <Button
+                  className="cart-in-btn"
                   onClick={onClickCartItem}
                   width="200px"
                   size="medium"

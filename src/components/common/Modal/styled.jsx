@@ -31,7 +31,7 @@ export const ModalWrapper = styled.article`
     background-position: center center;
   }
   .modal-text {
-    width: 203px;
+    width: 231px;
     font-size: 16px;
     line-height: 20px;
     margin: 0 auto;

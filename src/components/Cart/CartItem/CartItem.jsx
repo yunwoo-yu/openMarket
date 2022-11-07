@@ -3,14 +3,8 @@ import QuantityButton from "../../common/QuantityButton/QuantityButton";
 import { CartItemWrapper } from "./styled";
 import { Button } from "../../common/Button/Button";
 import closeImg from "../../../assets/icon-delete.svg";
-import Modal from "../../common/Modal/Modal";
 
-const CartItem = ({
-  cartStateData,
-  isDeleteModal,
-  onhandleClick,
-  onClickModal,
-}) => {
+const CartItem = ({ cartStateData, onHandleClick, onClickModal }) => {
   const {
     is_active,
     quantity,
@@ -34,35 +28,28 @@ const CartItem = ({
 
   return (
     <>
-      {isDeleteModal && (
-        <Modal
-          rejectText={"취소"}
-          resultText={"확인"}
-          onClickReject={() => {
-            onClickModal("close");
-          }}
-          // onClickResult={}
-        >
-          상품을 삭제하시겠습니까?
-        </Modal>
-      )}
       <CartItemWrapper>
-        <td className="delete-btn" onClick={onClickModal}>
+        <li
+          className="delete-btn"
+          onClick={() => {
+            onClickModal("open", cart_item_id);
+          }}
+        >
           <img src={closeImg} alt="삭제 버튼" />
-        </td>
-        <td>
+        </li>
+        <li>
           <CheckBox
             type={"checkbox"}
             checked={is_active}
             onChange={() => {
-              onhandleClick("toggleBox", cart_item_id);
+              onHandleClick("toggleBox", cart_item_id);
             }}
           />
-        </td>
-        <td>
+        </li>
+        <li>
           <img src={image} alt="장바구니 상품 이미지" />
-        </td>
-        <td className="text-box">
+        </li>
+        <li className="text-box">
           <p className="store-name">{store_name}</p>
           <p className="product-name">{product_name}</p>
           <p className="price">{convetedPrice}원</p>
@@ -72,23 +59,23 @@ const CartItem = ({
               ? `무료배송`
               : `${convetedShipping_fee}원`}
           </p>
-        </td>
-        <td className="quantity-btn">
+        </li>
+        <li className="quantity-btn">
           <QuantityButton
             num={quantity}
             maxNum={stock}
             onClickMinus={() => {
-              onhandleClick("decrement", cart_item_id);
+              onHandleClick("decrement", cart_item_id);
             }}
             onClickPlus={() => {
-              onhandleClick("increment", cart_item_id);
+              onHandleClick("increment", cart_item_id);
             }}
           />
-        </td>
-        <td className="order-box">
+        </li>
+        <li className="order-box">
           <p>{convetedTotalPrice}원</p>
           <Button>주문하기</Button>
-        </td>
+        </li>
       </CartItemWrapper>
     </>
   );

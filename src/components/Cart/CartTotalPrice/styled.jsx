@@ -10,6 +10,7 @@ export const CartTotalPriceWrapper = styled.div`
     display: flex;
     align-items: center;
     margin-top: 80px;
+    border-radius: 10px;
 
     li {
       width: 320px;

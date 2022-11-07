@@ -99,3 +99,8 @@ export const postCartItem = async (productData) => {
   const response = await accessInstance.post("/cart/", productData);
   return response.data;
 };
+
+export const deleteCartItem = async (itemId) => {
+  const response = await accessInstance.delete(`/cart/${itemId}`);
+  return response.data;
+};

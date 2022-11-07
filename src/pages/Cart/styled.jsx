@@ -12,7 +12,3 @@ export const CartWrapper = styled.section`
     margin: 54px 0 52px;
   }
 `;
-
-export const TableWrapper = styled.table`
-  width: 100%;
-`;

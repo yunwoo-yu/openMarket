@@ -4,20 +4,20 @@ import { CartHeaderWrapper } from "./styled";
 const CartHeader = ({
   cartStateData,
   isActive,
-  onhandleClick,
+  onHandleClick,
   setIsActive,
   setCartData,
 }) => {
   return (
     <CartHeaderWrapper>
-      <tr>
-        <td>
+      <ul>
+        <li>
           <CheckBox
             type="checkbox"
             checked={isActive}
             onChange={() => {
               cartStateData.forEach((item) => {
-                onhandleClick("toggleBoxAll", item.cart_item_id);
+                onHandleClick("toggleBoxAll", item.cart_item_id);
               });
               setIsActive((prev) => !prev);
               setCartData((prev) => {
@@ -27,11 +27,11 @@ const CartHeader = ({
               });
             }}
           />
-        </td>
-        <td>상품정보</td>
-        <td>수량</td>
-        <td>상품금액</td>
-      </tr>
+        </li>
+        <li>상품정보</li>
+        <li>수량</li>
+        <li>상품금액</li>
+      </ul>
     </CartHeaderWrapper>
   );
 };

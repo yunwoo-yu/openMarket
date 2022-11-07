@@ -1,11 +1,16 @@
 import CartHeader from "../../components/Cart/CartHeader/CartHeader";
 import CartList from "../../components/Cart/CartList/CartList";
-import { CartWrapper, TableWrapper } from "./styled";
-import { useMutation, useQuery } from "react-query";
-import { getUserCart, setUserCart } from "../../lib/api/axios-api";
+import { CartWrapper } from "./styled";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import {
+  deleteCartItem,
+  getUserCart,
+  setUserCart,
+} from "../../lib/api/axios-api";
 import Loading from "../../components/common/Loading/Loading";
 import { useState } from "react";
 import CartTotalPrice from "../../components/Cart/CartTotalPrice/CartTotalPrice";
+import Modal from "../../components/common/Modal/Modal";
 
 const CartPage = () => {
   const { data, isLoading, isError, error } = useQuery("cart", getUserCart, {
@@ -16,6 +21,8 @@ const CartPage = () => {
   const [cartData, setCartData] = useState([]);
   const [isActive, setIsActive] = useState(false);
   const [isDeleteModal, setIsDeleteModal] = useState(false);
+  const [selectedCartId, setSelectedCartId] = useState();
+  const queryClient = useQueryClient();
 
   const toggleMutation = useMutation(setUserCart, {
     onSuccess(res) {
@@ -81,6 +88,15 @@ const CartPage = () => {
     },
   });
 
+  const deleteCartItemMutation = useMutation(deleteCartItem, {
+    onSuccess(message) {
+      queryClient.invalidateQueries("cart");
+      setIsDeleteModal(false);
+    },
+    onError(err) {
+      console.log(err);
+    },
+  });
   const allCheckBoxToggleMutation = useMutation(setUserCart);
 
   const getProps = (type, id) => {
@@ -112,18 +128,21 @@ const CartPage = () => {
     return events[type];
   };
 
-  const handleClick = (type, id) => {
+  const HandleClick = (type, id) => {
     const event = getEvent(type);
     const props = getProps(type, id);
 
     event(props);
   };
 
-  const onClickModal = (type) => {
+  const onClickModal = (type, item_Id) => {
     type === "close" ? setIsDeleteModal(false) : setIsDeleteModal(true);
+    setSelectedCartId(item_Id);
   };
 
-  const onClickDeleteItem = () => {};
+  const onClickDeleteItem = () => {
+    deleteCartItemMutation.mutate(selectedCartId);
+  };
 
   const sumCartItem = cartData.reduce(
     (acc, cur) => {
@@ -140,25 +159,36 @@ const CartPage = () => {
 
   if (isLoading) return <Loading />;
   if (isError) return <p>{error.response.data.detail}</p>;
-
+  console.log(selectedCartId);
   return (
     <CartWrapper>
       <h2>장바구니</h2>
-      <TableWrapper>
-        <CartHeader
-          cartStateData={cartData}
-          isActive={isActive}
-          onhandleClick={handleClick}
-          setIsActive={setIsActive}
-          setCartData={setCartData}
-        />
-        <CartList
-          cartStateData={cartData}
-          onhandleClick={handleClick}
-          onClickModal={onClickModal}
-          isDeleteModal={isDeleteModal}
-        />
-      </TableWrapper>
+      <CartHeader
+        cartStateData={cartData}
+        isActive={isActive}
+        setIsActive={setIsActive}
+        setCartData={setCartData}
+        onHandleClick={HandleClick}
+      />
+      {isDeleteModal && (
+        <Modal
+          rejectText={"취소"}
+          resultText={"확인"}
+          onClickReject={() => {
+            onClickModal("close");
+          }}
+          onClickResult={() => {
+            onClickDeleteItem();
+          }}
+        >
+          상품을 삭제하시겠습니까?
+        </Modal>
+      )}
+      <CartList
+        cartStateData={cartData}
+        onHandleClick={HandleClick}
+        onClickModal={onClickModal}
+      />
       <CartTotalPrice sumCartItem={sumCartItem} />
     </CartWrapper>
   );

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const CartItemWrapper = styled.tr`
+export const CartItemWrapper = styled.ul`
   width: 100%;
   height: 200px;
   padding: 20px 100px 20px 30px;
@@ -10,7 +10,7 @@ export const CartItemWrapper = styled.tr`
   border-radius: 10px;
   position: relative;
 
-  td {
+  li {
     > img {
       width: 160px;
       height: 160px;
