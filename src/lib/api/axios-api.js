@@ -86,7 +86,7 @@ export const getUserCart = async () => {
   return resultArray;
 };
 
-export const setUserCartActive = async (itemData) => {
+export const setUserCart = async (itemData) => {
   const response = await accessInstance.put(`/cart/${itemData.cart_item_id}/`, {
     product_id: itemData.product_id,
     quantity: itemData.quantity,

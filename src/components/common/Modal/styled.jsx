@@ -11,6 +11,7 @@ export const ModalWrapper = styled.article`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 9000;
 
   button {
     cursor: pointer;

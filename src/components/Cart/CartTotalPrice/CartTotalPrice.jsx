@@ -5,7 +5,7 @@ const CartTotalPrice = ({ sumCartItem }) => {
   const { price, shipping_fee } = sumCartItem;
 
   const convetedPrice = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  const convetedShippingFee = price
+  const convetedShippingFee = shipping_fee
     .toString()
     .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 

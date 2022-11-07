@@ -8,6 +8,7 @@ export const CartItemWrapper = styled.tr`
   align-items: center;
   border: 2px solid #e0e0e0;
   border-radius: 10px;
+  position: relative;
 
   td {
     > img {
@@ -16,6 +17,18 @@ export const CartItemWrapper = styled.tr`
       object-fit: cover;
       margin-left: 40px;
       border-radius: 10px;
+    }
+  }
+  .delete-btn {
+    position: absolute;
+    right: 18px;
+    top: 18px;
+    cursor: pointer;
+    > img {
+      width: auto;
+      height: auto;
+      margin-left: 0;
+      border-radius: 0;
     }
   }
 

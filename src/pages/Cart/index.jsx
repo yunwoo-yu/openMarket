@@ -2,7 +2,7 @@ import CartHeader from "../../components/Cart/CartHeader/CartHeader";
 import CartList from "../../components/Cart/CartList/CartList";
 import { CartWrapper, TableWrapper } from "./styled";
 import { useMutation, useQuery } from "react-query";
-import { getUserCart, setUserCartActive } from "../../lib/api/axios-api";
+import { getUserCart, setUserCart } from "../../lib/api/axios-api";
 import Loading from "../../components/common/Loading/Loading";
 import { useState } from "react";
 import CartTotalPrice from "../../components/Cart/CartTotalPrice/CartTotalPrice";
@@ -15,8 +15,9 @@ const CartPage = () => {
   });
   const [cartData, setCartData] = useState([]);
   const [isActive, setIsActive] = useState(false);
+  const [isDeleteModal, setIsDeleteModal] = useState(false);
 
-  const mutation = useMutation(setUserCartActive, {
+  const toggleMutation = useMutation(setUserCart, {
     onSuccess(res) {
       const cartItemResultIdx = cartData.findIndex(
         (el) => el.product_id === res.product_id
@@ -37,7 +38,8 @@ const CartPage = () => {
       console.log(err);
     },
   });
-  const Incrementmutation = useMutation(setUserCartActive, {
+
+  const incrementMutation = useMutation(setUserCart, {
     onSuccess(res) {
       const cartItemResultIdx = cartData.findIndex(
         (el) => el.product_id === res.product_id
@@ -57,7 +59,7 @@ const CartPage = () => {
       console.log(err);
     },
   });
-  const Decrementmutation = useMutation(setUserCartActive, {
+  const decrementMutation = useMutation(setUserCart, {
     onSuccess(res) {
       const cartItemResultIdx = cartData.findIndex(
         (el) => el.product_id === res.product_id
@@ -79,58 +81,49 @@ const CartPage = () => {
     },
   });
 
-  const mutationAllCheckBox = useMutation(setUserCartActive);
+  const allCheckBoxToggleMutation = useMutation(setUserCart);
 
-  const onToggleCheckBox = (id) => {
+  const getProps = (type, id) => {
     const cartItemIdx = cartData.findIndex((el) => el.cart_item_id === id);
+    const cartItem = cartData[cartItemIdx];
+    const addCount = type === "increment" ? 1 : type === "decrement" ? -1 : 0;
 
-    mutation.mutate({
-      cart_item_id: cartData[cartItemIdx].cart_item_id,
-      product_id: cartData[cartItemIdx].product_id,
-      quantity: cartData[cartItemIdx].quantity,
-      is_active: !cartData[cartItemIdx].is_active,
-    });
+    return {
+      cart_item_id: cartItem.cart_item_id,
+      product_id: cartItem.product_id,
+      quantity: cartItem.quantity + addCount,
+      is_active:
+        type === "toggleBox"
+          ? !cartItem.is_active
+          : type === "toggleBoxAll"
+          ? !isActive
+          : !cartItem.is_active,
+    };
   };
 
-  const onClickIncrement = (id) => {
-    const cartItemIdx = cartData.findIndex((el) => el.cart_item_id === id);
-    console.log(cartItemIdx);
-    Incrementmutation.mutate({
-      cart_item_id: cartData[cartItemIdx].cart_item_id,
-      product_id: cartData[cartItemIdx].product_id,
-      quantity: cartData[cartItemIdx].quantity + 1,
-      is_active: cartData[cartItemIdx].is_active,
-    });
+  const getEvent = (type) => {
+    const events = {
+      increment: incrementMutation.mutate,
+      decrement: decrementMutation.mutate,
+      toggleBox: toggleMutation.mutate,
+      toggleBoxAll: allCheckBoxToggleMutation.mutate,
+    };
+
+    return events[type];
   };
 
-  const onClickDecrement = (id) => {
-    const cartItemIdx = cartData.findIndex((el) => el.cart_item_id === id);
-    if (cartData[cartItemIdx].quantity > 1) {
-      Decrementmutation.mutate({
-        cart_item_id: cartData[cartItemIdx].cart_item_id,
-        product_id: cartData[cartItemIdx].product_id,
-        quantity: cartData[cartItemIdx].quantity - 1,
-        is_active: cartData[cartItemIdx].is_active,
-      });
-    }
+  const handleClick = (type, id) => {
+    const event = getEvent(type);
+    const props = getProps(type, id);
+
+    event(props);
   };
 
-  const onToggleCheckBoxAll = () => {
-    cartData.forEach((item) => {
-      mutationAllCheckBox.mutate({
-        cart_item_id: item.cart_item_id,
-        product_id: item.product_id,
-        quantity: item.quantity,
-        is_active: !isActive,
-      });
-    });
-    setIsActive((prev) => !prev);
-    setCartData((prev) => {
-      return [...prev].map((item) => {
-        return { ...item, is_active: !isActive };
-      });
-    });
+  const onClickModal = (type) => {
+    type === "close" ? setIsDeleteModal(false) : setIsDeleteModal(true);
   };
+
+  const onClickDeleteItem = () => {};
 
   const sumCartItem = cartData.reduce(
     (acc, cur) => {
@@ -144,6 +137,7 @@ const CartPage = () => {
     },
     { price: 0, shipping_fee: 0 }
   );
+
   if (isLoading) return <Loading />;
   if (isError) return <p>{error.response.data.detail}</p>;
 
@@ -154,13 +148,15 @@ const CartPage = () => {
         <CartHeader
           cartStateData={cartData}
           isActive={isActive}
-          onToggleCheckBoxAll={onToggleCheckBoxAll}
+          onhandleClick={handleClick}
+          setIsActive={setIsActive}
+          setCartData={setCartData}
         />
         <CartList
           cartStateData={cartData}
-          onToggleCheckBox={onToggleCheckBox}
-          onIncrement={onClickIncrement}
-          onDecrement={onClickDecrement}
+          onhandleClick={handleClick}
+          onClickModal={onClickModal}
+          isDeleteModal={isDeleteModal}
         />
       </TableWrapper>
       <CartTotalPrice sumCartItem={sumCartItem} />

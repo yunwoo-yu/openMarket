@@ -2,16 +2,17 @@ import { CheckBox } from "../../common/Input/CheckBox/CheckBox";
 import QuantityButton from "../../common/QuantityButton/QuantityButton";
 import { CartItemWrapper } from "./styled";
 import { Button } from "../../common/Button/Button";
+import closeImg from "../../../assets/icon-delete.svg";
+import Modal from "../../common/Modal/Modal";
 
 const CartItem = ({
   cartStateData,
-  onToggleCheckBox,
-  onIncrement,
-  onDecrement,
+  isDeleteModal,
+  onhandleClick,
+  onClickModal,
 }) => {
   const {
     is_active,
-    product_id,
     quantity,
     cart_item_id,
     image,
@@ -22,6 +23,7 @@ const CartItem = ({
     stock,
     price,
   } = cartStateData;
+
   const convetedPrice = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   const convetedTotalPrice = (quantity * price)
     .toString()
@@ -31,47 +33,64 @@ const CartItem = ({
     .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
   return (
-    <CartItemWrapper>
-      <td>
-        <CheckBox
-          type={"checkbox"}
-          checked={is_active}
-          onChange={() => {
-            onToggleCheckBox(cart_item_id);
+    <>
+      {isDeleteModal && (
+        <Modal
+          rejectText={"취소"}
+          resultText={"확인"}
+          onClickReject={() => {
+            onClickModal("close");
           }}
-        />
-      </td>
-      <td>
-        <img src={image} alt="장바구니 상품 이미지" />
-      </td>
-      <td className="text-box">
-        <p className="store-name">{store_name}</p>
-        <p className="product-name">{product_name}</p>
-        <p className="price">{convetedPrice}원</p>
-        <p className="delivery">
-          {shipping_method} /{" "}
-          {convetedShipping_fee === "0"
-            ? `무료배송`
-            : `${convetedShipping_fee}원`}
-        </p>
-      </td>
-      <td className="quantity-btn">
-        <QuantityButton
-          num={quantity}
-          maxNum={stock}
-          onClickMinus={() => {
-            onDecrement(cart_item_id);
-          }}
-          onClickPlus={() => {
-            onIncrement(cart_item_id);
-          }}
-        />
-      </td>
-      <td className="order-box">
-        <p>{convetedTotalPrice}원</p>
-        <Button>주문하기</Button>
-      </td>
-    </CartItemWrapper>
+          // onClickResult={}
+        >
+          상품을 삭제하시겠습니까?
+        </Modal>
+      )}
+      <CartItemWrapper>
+        <td className="delete-btn" onClick={onClickModal}>
+          <img src={closeImg} alt="삭제 버튼" />
+        </td>
+        <td>
+          <CheckBox
+            type={"checkbox"}
+            checked={is_active}
+            onChange={() => {
+              onhandleClick("toggleBox", cart_item_id);
+            }}
+          />
+        </td>
+        <td>
+          <img src={image} alt="장바구니 상품 이미지" />
+        </td>
+        <td className="text-box">
+          <p className="store-name">{store_name}</p>
+          <p className="product-name">{product_name}</p>
+          <p className="price">{convetedPrice}원</p>
+          <p className="delivery">
+            {shipping_method} /{" "}
+            {convetedShipping_fee === "0"
+              ? `무료배송`
+              : `${convetedShipping_fee}원`}
+          </p>
+        </td>
+        <td className="quantity-btn">
+          <QuantityButton
+            num={quantity}
+            maxNum={stock}
+            onClickMinus={() => {
+              onhandleClick("decrement", cart_item_id);
+            }}
+            onClickPlus={() => {
+              onhandleClick("increment", cart_item_id);
+            }}
+          />
+        </td>
+        <td className="order-box">
+          <p>{convetedTotalPrice}원</p>
+          <Button>주문하기</Button>
+        </td>
+      </CartItemWrapper>
+    </>
   );
 };
 

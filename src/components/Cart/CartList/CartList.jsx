@@ -3,9 +3,9 @@ import { CartListWrapper } from "./styled";
 
 const CartList = ({
   cartStateData,
-  onToggleCheckBox,
-  onIncrement,
-  onDecrement,
+  onhandleClick,
+  onClickModal,
+  isDeleteModal,
 }) => {
   return (
     <CartListWrapper>
@@ -13,9 +13,9 @@ const CartList = ({
         <CartItem
           cartStateData={item}
           key={item.product_id}
-          onToggleCheckBox={onToggleCheckBox}
-          onIncrement={onIncrement}
-          onDecrement={onDecrement}
+          isDeleteModal={isDeleteModal}
+          onClickModal={onClickModal}
+          onhandleClick={onhandleClick}
         />
       ))}
     </CartListWrapper>
