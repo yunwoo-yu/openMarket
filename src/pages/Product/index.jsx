@@ -20,6 +20,8 @@ const ProductPage = () => {
   );
   const { data: cartData } = useQuery("cart", getUserCart);
 
+  console.log(data);
+
   const addCartItemMutation = useMutation(postCartItem, {
     onSuccess(data) {
       setIsModal(true);
@@ -41,9 +43,20 @@ const ProductPage = () => {
 
   const onClickProductOrder = () => {
     const orderData = {
-      data,
-      order_kind: "direct",
+      product_id: data.product_id,
+      product_name: data.product_name,
+      store_name: data.store_name,
+      image: data.image,
+      price: data.price,
+      shipping_fee: data.shipping_fee,
+      quantity: amount,
     };
+    navigate("/order", {
+      state: {
+        data: [orderData],
+        order_kind: "direct_order",
+      },
+    });
   };
 
   const onClickAddProductToCart = () => {
@@ -114,6 +127,7 @@ const ProductPage = () => {
         error={error}
         onClickQuantity={onClickQuantity}
         onClickCartItem={onClickAddProductToCart}
+        onClickProductOrder={onClickProductOrder}
         amount={amount}
       />
     </>

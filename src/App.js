@@ -10,6 +10,7 @@ import LayOut from "./components/Layout/Layout";
 import SignUpPage from "./pages/SignUp/index";
 import PrivateRotuer from "./components/router/PrivateRouter";
 import { useSelector } from "react-redux";
+import OrderPage from "./pages/Order";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +26,7 @@ function App() {
               <Route path="" element={<HomePage />} />
               <Route path="/products/:id" element={<ProductPage />} />
               <Route path="/cart" element={<CartPage />} />
+              <Route path="/order" element={<OrderPage />} />
             </Route>
             <Route
               path="/login"

@@ -10,6 +10,7 @@ const ProductsDetail = ({
   convetedPrice,
   onClickQuantity,
   onClickCartItem,
+  onClickProductOrder,
 }) => {
   return (
     <>
@@ -47,7 +48,11 @@ const ProductsDetail = ({
                 </p>
               </div>
               <div className="btn-box">
-                <Button width="416px" size="medium">
+                <Button
+                  width="416px"
+                  size="medium"
+                  onClick={onClickProductOrder}
+                >
                   바로 구매
                 </Button>
                 <Button
