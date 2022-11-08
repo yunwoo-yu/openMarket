@@ -20,14 +20,11 @@ const ProductPage = () => {
   );
   const { data: cartData } = useQuery("cart", getUserCart);
 
-  console.log(data);
-
   const addCartItemMutation = useMutation(postCartItem, {
     onSuccess(data) {
       setIsModal(true);
     },
     onError(err) {
-      console.log(err);
       alert(`${err.response.data.FAIL_message} 현재 재고 : ${data.stock}
       `);
     },
@@ -37,7 +34,6 @@ const ProductPage = () => {
     const isCartItem = cartData.filter(
       (item) => item.product_id === data.product_id
     ).length;
-
     return isCartItem;
   };
 
@@ -50,11 +46,11 @@ const ProductPage = () => {
       price: data.price,
       shipping_fee: data.shipping_fee,
       quantity: amount,
+      order_kind: "direct_order",
     };
     navigate("/order", {
       state: {
         data: [orderData],
-        order_kind: "direct_order",
       },
     });
   };
