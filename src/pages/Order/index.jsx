@@ -24,6 +24,7 @@ const OrderPage = () => {
     setAddressData(addressData);
   };
 
+  console.log(data);
   const handleClick = () => {
     postPopUp({ onComplete: handleComplete });
   };

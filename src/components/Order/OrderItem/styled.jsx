@@ -3,12 +3,11 @@ import styled from "styled-components";
 export const OrderItemWrapper = styled.ul`
   width: 100%;
   height: 130px;
-  padding: 8px 78px 17px 8px;
+  padding: 18px 8px;
   display: flex;
   align-items: center;
   position: relative;
   border-bottom: 1px solid #c4c4c4;
-  gap: 16px;
   margin-bottom: 30px;
 
   li {
@@ -21,7 +20,7 @@ export const OrderItemWrapper = styled.ul`
   }
 
   .text-box {
-    width: 442px;
+    width: 524px;
     margin-left: 36px;
 
     .store-name {
@@ -42,18 +41,21 @@ export const OrderItemWrapper = styled.ul`
     }
   }
   .sale {
-    margin-left: 111px;
+    text-align: center;
+    width: 200px;
   }
   .delivery {
+    width: 200px;
     font-size: 18px;
     line-height: 23px;
     color: #767676;
-    margin-left: 193px;
+    text-align: center;
   }
   .product-price {
+    width: 200px;
+    text-align: center;
     font-weight: 700;
     font-size: 18px;
     line-height: 23px;
-    margin-left: auto;
   }
 `;

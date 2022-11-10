@@ -8,28 +8,20 @@ export const OrderHeaderWrapper = styled.nav`
   align-items: center;
   margin-bottom: 16px;
   box-sizing: border-box;
-  padding: 10px 0;
+  padding: 10px 8px;
   border-radius: 10px;
   ul {
-    display: block;
+    display: flex;
     width: 100%;
-
+    text-align: center;
     li {
+      width: 200px;
       display: inline-block;
       font-size: 18px;
       line-height: 23px;
 
       &:first-child {
-        margin-left: 261px;
-      }
-      &:nth-child(2) {
-        margin-left: 360px;
-      }
-      &:nth-child(3) {
-        margin-left: 188px;
-      }
-      &:nth-child(4) {
-        margin-left: 171px;
+        width: 664px;
       }
     }
   }
