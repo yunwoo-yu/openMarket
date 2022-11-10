@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 import OrderForm from "../../components/Order/OrderForm/OrderForm";
 import OrderHeader from "../../components/Order/OrderHeader/OrderHeader";
 import OrderList from "../../components/Order/OrderList/OrderList";
+import OrderPayment from "../../components/Order/OrderPayment/OrderPayment";
 import OrderTotalPrice from "../../components/Order/OrderTotalPrice/OrderTotalPrice";
 import { OrderWrapper } from "./styled";
 
@@ -12,19 +13,39 @@ const OrderPage = () => {
   const location = useLocation();
   const data = location.state.data;
   const postPopUp = useDaumPostcodePopup(postcodeScriptUrl);
-  const [addressData, setAddressData] = useState({ zonecode: "", address: "" });
+  const [inputValue, setInputValue] = useState({
+    reciever: "",
+    reciever_phone_number: "",
+    reciever_phone_number2: "",
+    reciever_phone_number3: "",
+    address: "",
+    address2: "",
+    address3: "",
+    address_message: "",
+    payment_method: "",
+    total_price: 0,
+  });
 
   const handleComplete = (data) => {
     const { zonecode, address } = data;
-    const addressData = {
-      zonecode,
-      address,
-    };
 
-    setAddressData(addressData);
+    setInputValue({
+      ...inputValue,
+      address: zonecode,
+      address2: address,
+    });
   };
 
-  console.log(data);
+  const onChangeHandler = (e) => {
+    const { value, name } = e.target;
+
+    setInputValue({
+      ...inputValue,
+      [name]: value,
+    });
+  };
+  console.log(inputValue);
+
   const handleClick = () => {
     postPopUp({ onComplete: handleComplete });
   };
@@ -35,7 +56,12 @@ const OrderPage = () => {
       <OrderHeader />
       <OrderList data={data} />
       <OrderTotalPrice data={data} />
-      <OrderForm onPostCode={handleClick} addressData={addressData} />
+      <OrderForm
+        onPostCode={handleClick}
+        formValue={inputValue}
+        onChange={onChangeHandler}
+      />
+      <OrderPayment />
     </OrderWrapper>
   );
 };
