@@ -1,0 +1,33 @@
+{
+  "files": {
+    "main.css": "/openMarket/static/css/main.52adc353.css",
+    "main.js": "/openMarket/static/js/main.d3c2ce8c.js",
+    "static/media/SpoqaHanSans-Light.woff": "/openMarket/static/media/SpoqaHanSans-Light.2efd9d0cd25cfd2e3e16.woff",
+    "static/media/SpoqaHanSans-Thin.woff": "/openMarket/static/media/SpoqaHanSans-Thin.fa5d85bca1b2b4ad3c56.woff",
+    "static/media/SpoqaHanSans-Regular.woff": "/openMarket/static/media/SpoqaHanSans-Regular.a4038e1b6c14b2b6028c.woff",
+    "static/media/SpoqaHanSans-Bold.woff": "/openMarket/static/media/SpoqaHanSans-Bold.9f50fee9013d88ea4012.woff",
+    "static/media/SpoqaHanSans-Regular.woff2": "/openMarket/static/media/SpoqaHanSans-Regular.f0dfba6d8d96921fc0dc.woff2",
+    "static/media/SpoqaHanSans-Bold.woff2": "/openMarket/static/media/SpoqaHanSans-Bold.c7298d774729a38947f4.woff2",
+    "static/media/SpoqaHanSans-Light.woff2": "/openMarket/static/media/SpoqaHanSans-Light.fe35728c84dba43483ea.woff2",
+    "static/media/SpoqaHanSans-Thin.woff2": "/openMarket/static/media/SpoqaHanSans-Thin.7204984cda33621b74fb.woff2",
+    "static/media/spinner.gif": "/openMarket/static/media/spinner.d54944959bfee20b975c.gif",
+    "static/media/icon-shopping-cart-2.svg": "/openMarket/static/media/icon-shopping-cart-2.f8cb662c5a3d96adb6e7ca2171d9f4e8.svg",
+    "static/media/icon-shopping-cart.svg": "/openMarket/static/media/icon-shopping-cart.fb559eef06cbd36853bca34c03d0dc36.svg",
+    "static/media/icon-user-2.svg": "/openMarket/static/media/icon-user-2.bdff8c39bdde0200c6b64fb4ad67d741.svg",
+    "static/media/icon-user.svg": "/openMarket/static/media/icon-user.d6e6542c29daf583e08e85e50438081c.svg",
+    "index.html": "/openMarket/index.html",
+    "static/media/icon-search.svg": "/openMarket/static/media/icon-search.faf251eb2ee67a3e9a4400aef97a6caa.svg",
+    "static/media/icon-delete.svg": "/openMarket/static/media/icon-delete.ba8d00dab607e6e14de523ac8b226be8.svg",
+    "static/media/icon-check-off.svg": "/openMarket/static/media/icon-check-off.17622ad99a260af807d1fd1a88937208.svg",
+    "static/media/icon-check-on.svg": "/openMarket/static/media/icon-check-on.b7d08d1791f31bcb2492da9f77f6d912.svg",
+    "static/media/icon-plus-line-white.svg": "/openMarket/static/media/icon-plus-line-white.f3f1725c3f4079395c5661450616535c.svg",
+    "static/media/icon-plus-line.svg": "/openMarket/static/media/icon-plus-line.d658909c1751cb655de642c07d7e90da.svg",
+    "static/media/icon-minus-line.svg": "/openMarket/static/media/icon-minus-line.73ef1e8c52aa8aab95e50eec7036f567.svg",
+    "main.52adc353.css.map": "/openMarket/static/css/main.52adc353.css.map",
+    "main.d3c2ce8c.js.map": "/openMarket/static/js/main.d3c2ce8c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.52adc353.css",
+    "static/js/main.d3c2ce8c.js"
+  ]
+}
