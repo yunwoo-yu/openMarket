@@ -10,7 +10,7 @@ yarn 설치 : `$ npm install yarn`
 
 실행 : `$ yarn start`
 
-배포 사이트 :
+배포 사이트 : https://yunwoo-yu.github.io/openMarket/ (미완)
 
 ## 🛠 사용 STACK 🛠
 
