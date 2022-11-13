@@ -4,7 +4,7 @@ import { OrderPaymentWrapper } from "./styled";
 const OrderPayment = () => {
   return (
     <OrderPaymentWrapper>
-      <p className="payment-title">결제수단</p>
+      <h3 className="payment-title">결제수단</h3>
       <PaymentTextWrapper>
         <input type={"radio"} name="card" id="card" />
         <label htmlFor="card">신용/체크카드</label>
@@ -17,7 +17,10 @@ const OrderPayment = () => {
         <input type={"radio"} name="card" id="card" />
         <label htmlFor="card">카카오 페이</label>
       </PaymentTextWrapper>
-      <article>zz</article>
+      <article>
+        <h4>최종결제 정보</h4>
+        <div className="payment-result-box"></div>
+      </article>
     </OrderPaymentWrapper>
   );
 };
