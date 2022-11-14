@@ -61,7 +61,7 @@ const OrderPage = () => {
         formValue={inputValue}
         onChange={onChangeHandler}
       />
-      <OrderPayment />
+      <OrderPayment data={data} />
     </OrderWrapper>
   );
 };

@@ -2,9 +2,12 @@ import styled from "styled-components";
 
 export const PaymentTextWrapper = styled.div`
   width: 760px;
+  height: auto;
   padding: 18px 12px;
   display: flex;
-  border-bottom: 2px solid #c4c4c4;
+  border: 2px solid #c4c4c4;
+  border-right: none;
+  border-left: none;
   align-items: center;
 
   label {

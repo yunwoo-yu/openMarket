@@ -90,14 +90,20 @@ const OrderForm = ({ onPostCode, addressData, formValue, onChange }) => {
           <input type="text" value={address2} readOnly onChange={onChange} />
           <input
             type="text"
+            name="address3"
             value={address3}
             onChange={onChange}
             placeholder="(상세주소)"
           />
         </PostTextWrapper>
         <DefaultTextWrapper className="post-message">
-          <label htmlFor=""> 배송 메시지</label>
-          <input type="text" value={address_message} onChange={onChange} />
+          <label htmlFor="">배송 메시지</label>
+          <input
+            type="text"
+            value={address_message}
+            name="address_message"
+            onChange={onChange}
+          />
         </DefaultTextWrapper>
       </Form>
     </OrderFormWrapper>

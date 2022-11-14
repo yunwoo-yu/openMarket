@@ -1,6 +1,6 @@
 import { FormWrapper } from "./styled";
 
 const Form = ({ children }) => {
-  return <FormWrapper>{children}</FormWrapper>;
+  return <FormWrapper id="payment-submit">{children}</FormWrapper>;
 };
 export default Form;
