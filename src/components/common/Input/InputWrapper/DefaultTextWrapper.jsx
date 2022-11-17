@@ -5,4 +5,9 @@ export const DefaultTextWrapper = styled.div`
   display: flex;
   border-bottom: 1px solid #c4c4c4;
   align-items: center;
+
+  span {
+    margin-left: 12px;
+    color: #eb5757;
+  }
 `;

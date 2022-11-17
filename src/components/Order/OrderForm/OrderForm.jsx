@@ -2,15 +2,19 @@ import { OrderFormWrapper } from "./styled";
 import { Button } from "../../common/Button/Button";
 import Form from "../../common/Form/Form";
 import { DefaultTextWrapper } from "../../common/Input/InputWrapper/DefaultTextWrapper";
-import { PhoneTextWrapper } from "../../common/Input/InputWrapper/PhoneTextWrapper";
 import { PostTextWrapper } from "../../common/Input/InputWrapper/PostTextWrapper";
 
-const OrderForm = ({ onPostCode, addressData, formValue, onChange }) => {
+const OrderForm = ({
+  onPostCode,
+  formValue,
+  onChange,
+  onBlur,
+  errors,
+  isBlur,
+}) => {
   const {
     reciever,
     reciever_phone_number,
-    reciever_phone_number2,
-    reciever_phone_number3,
     address,
     address2,
     address3,
@@ -25,14 +29,10 @@ const OrderForm = ({ onPostCode, addressData, formValue, onChange }) => {
           <label htmlFor="username">이름</label>
           <input type="text" name="username" id="username" />
         </DefaultTextWrapper>
-        <PhoneTextWrapper>
+        <DefaultTextWrapper>
           <label htmlFor="phone">휴대폰</label>
           <input type="text" name="phone" id="phone" />
-          <span>-</span>
-          <input type="text" name="phone2" id="phone2" />
-          <span>-</span>
-          <input type="text" name="phone3" id="phone3" />
-        </PhoneTextWrapper>
+        </DefaultTextWrapper>
         <DefaultTextWrapper>
           <label htmlFor="email">이메일</label>
           <input type="text" name="email" id="email" />
@@ -46,9 +46,11 @@ const OrderForm = ({ onPostCode, addressData, formValue, onChange }) => {
             id="reciever"
             value={reciever}
             onChange={onChange}
+            onBlur={onBlur}
           />
+          {isBlur.reciever && <span>{errors.reciever}</span>}
         </DefaultTextWrapper>
-        <PhoneTextWrapper>
+        <DefaultTextWrapper>
           <label htmlFor="reciever_phone_number">휴대폰</label>
           <input
             type="text"
@@ -56,24 +58,13 @@ const OrderForm = ({ onPostCode, addressData, formValue, onChange }) => {
             id="reciever_phone_number"
             value={reciever_phone_number}
             onChange={onChange}
+            onBlur={onBlur}
           />
-          <span>-</span>
-          <input
-            type="text"
-            name="reciever_phone_number2"
-            id="reciever_phone_number2"
-            value={reciever_phone_number2}
-            onChange={onChange}
-          />
-          <span>-</span>
-          <input
-            type="text"
-            name="reciever_phone_number3"
-            id="reciever_phone_number3"
-            value={reciever_phone_number3}
-            onChange={onChange}
-          />
-        </PhoneTextWrapper>
+          {isBlur.reciever_phone_number && (
+            <span>{errors.reciever_phone_number}</span>
+          )}
+        </DefaultTextWrapper>
+
         <PostTextWrapper>
           <label htmlFor="address">배송주소</label>
           <input
@@ -82,6 +73,7 @@ const OrderForm = ({ onPostCode, addressData, formValue, onChange }) => {
             id="address"
             value={address}
             onChange={onChange}
+            onBlur={onBlur}
             readOnly
           />
           <Button type="button" onClick={onPostCode}>
@@ -93,6 +85,7 @@ const OrderForm = ({ onPostCode, addressData, formValue, onChange }) => {
             name="address3"
             value={address3}
             onChange={onChange}
+            onBlur={onBlur}
             placeholder="(상세주소)"
           />
         </PostTextWrapper>

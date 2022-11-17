@@ -2,7 +2,13 @@ import { Button } from "../../common/Button/Button";
 import { PaymentTextWrapper } from "../../common/Input/InputWrapper/PaymentTextWrapper";
 import { FinalPaymentWrapper, OrderPaymentWrapper } from "./styled";
 
-const OrderPayment = ({ data }) => {
+const OrderPayment = ({
+  data,
+  onClick,
+  onSubmit,
+  setIsCheckBox,
+  isCheckBox,
+}) => {
   const convertedTotalPrice = data
     .reduce((acc, cur) => {
       acc += cur.price * cur.quantity;
@@ -37,16 +43,41 @@ const OrderPayment = ({ data }) => {
       <div className="payment-how">
         <p className="payment-title">결제수단</p>
         <PaymentTextWrapper>
-          <input type={"radio"} name="CARD" id="card" />
+          <input
+            type={"radio"}
+            name="payment_method"
+            id="CARD"
+            onClick={onClick}
+          />
           <label htmlFor="CARD">신용/체크카드</label>
-          <input type={"radio"} name="deposit" id="deposit" />
-          <label htmlFor="deposit">무통장 입금</label>
-          <input type={"radio"} name="phone-payment" id="phone-payment" />
-          <label htmlFor="phone-payment">휴대폰 결제</label>
-          <input type={"radio"} name="naverpay" id="naverpay" />
-          <label htmlFor="naverpay">네이버 페이</label>
-          <input type={"radio"} name="KAKAOPAY" id="kakaopay" />
-          <label htmlFor="kakaopay">카카오 페이</label>
+          <input
+            type={"radio"}
+            name="payment_method"
+            id="DEPOSIT"
+            onClick={onClick}
+          />
+          <label htmlFor="DEPOSIT">무통장 입금</label>
+          <input
+            type={"radio"}
+            name="payment_method"
+            id="PHONE_PAYMENT"
+            onClick={onClick}
+          />
+          <label htmlFor="PHONE_PAYMENT">휴대폰 결제</label>
+          <input
+            type={"radio"}
+            name="payment_method"
+            id="NAVERPAY"
+            onClick={onClick}
+          />
+          <label htmlFor="NAVERPAY">네이버 페이</label>
+          <input
+            type={"radio"}
+            name="payment_method"
+            id="KAKAOPAY"
+            onClick={onClick}
+          />
+          <label htmlFor="KAKAOPAY">카카오 페이</label>
         </PaymentTextWrapper>
       </div>
       <div className="payment-result-box">
@@ -72,15 +103,23 @@ const OrderPayment = ({ data }) => {
             <strong>{convertedTotalPrice}원</strong>
           </p>
           <div className="consent">
-            <input type="checkbox" />
-            <label htmlFor="">
+            <input
+              type="checkbox"
+              name="consent"
+              id="consent"
+              onClick={() => {
+                setIsCheckBox((prev) => !prev);
+              }}
+            />
+            <label htmlFor="consent">
               주문 내용을 확인하였으며, 정보 제공 등에 동의 합니다.
             </label>
             <Button
               size="large"
               type="submit"
               form="payment-submit"
-              disabled={true}
+              onClick={onSubmit}
+              disabled={isCheckBox}
             >
               결제하기
             </Button>

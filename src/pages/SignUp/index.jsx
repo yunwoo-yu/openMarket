@@ -14,30 +14,23 @@ import { useState } from "react";
 import { useRef } from "react";
 
 const SignUpPage = () => {
+  const initialState = {
+    username: "",
+    password: "",
+    password2: "",
+    phone_number: "",
+    name: "",
+    company_registration_number: "",
+    store_name: "",
+  };
   const dispatch = useDispatch();
   const userType = useSelector((state) => state.user.type);
   const idRef = useRef();
   const [idDuplicateCheck, setIdDuplicateCheck] = useState("");
   const [companyNumberCheck, setCompanyNumberCheck] = useState("");
   const [terms, setTerms] = useState(false);
-  const [values, setValues] = useState({
-    username: "",
-    password: "",
-    password2: "",
-    phone_number: "",
-    name: "",
-    company_registration_number: "",
-    store_name: "",
-  });
-  const [errors, setErrors] = useState({
-    username: "",
-    password: "",
-    password2: "",
-    phone_number: "",
-    name: "",
-    company_registration_number: "",
-    store_name: "",
-  });
+  const [values, setValues] = useState({ ...initialState });
+  const [errors, setErrors] = useState({ ...initialState });
   const [isBlurs, setIsBlurs] = useState({
     username: false,
     password: false,

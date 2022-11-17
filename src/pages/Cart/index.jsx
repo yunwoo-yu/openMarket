@@ -159,7 +159,7 @@ const CartPage = () => {
 
   if (isLoading) return <Loading />;
   if (isError) return <p>{error.response.data.detail}</p>;
-  console.log(selectedCartId);
+
   return (
     <CartWrapper>
       <h2>장바구니</h2>
