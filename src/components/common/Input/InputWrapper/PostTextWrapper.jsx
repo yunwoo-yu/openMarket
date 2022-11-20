@@ -20,6 +20,6 @@ export const PostTextWrapper = styled.div`
   }
   button {
     width: 154px;
-    margin: 0 auto 8px 10px;
+    margin: 0 0 8px 10px;
   }
 `;

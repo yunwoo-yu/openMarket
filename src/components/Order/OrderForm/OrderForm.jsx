@@ -4,22 +4,16 @@ import Form from "../../common/Form/Form";
 import { DefaultTextWrapper } from "../../common/Input/InputWrapper/DefaultTextWrapper";
 import { PostTextWrapper } from "../../common/Input/InputWrapper/PostTextWrapper";
 
-const OrderForm = ({
-  onPostCode,
-  formValue,
-  onChange,
-  onBlur,
-  errors,
-  isBlur,
-}) => {
+const OrderForm = ({ onPostCode, formValue, onChange, errors }) => {
   const {
-    reciever,
-    reciever_phone_number,
+    receiver,
+    receiver_phone_number,
     address,
     address2,
     address3,
     address_message,
   } = formValue;
+
   return (
     <OrderFormWrapper>
       <h3>배송정보</h3>
@@ -39,32 +33,29 @@ const OrderForm = ({
         </DefaultTextWrapper>
         <p>배송지 정보</p>
         <DefaultTextWrapper>
-          <label htmlFor="reciever">수령인</label>
+          <label htmlFor="receiver">수령인</label>
           <input
             type="text"
-            name="reciever"
-            id="reciever"
-            value={reciever}
+            name="receiver"
+            id="receiver"
+            value={receiver}
             onChange={onChange}
-            onBlur={onBlur}
           />
-          {isBlur.reciever && <span>{errors.reciever}</span>}
+          {errors.receiver && <span>{errors.receiver}</span>}
         </DefaultTextWrapper>
         <DefaultTextWrapper>
-          <label htmlFor="reciever_phone_number">휴대폰</label>
+          <label htmlFor="receiver_phone_number">휴대폰</label>
           <input
             type="text"
-            name="reciever_phone_number"
-            id="reciever_phone_number"
-            value={reciever_phone_number}
+            name="receiver_phone_number"
+            id="receiver_phone_number"
+            value={receiver_phone_number}
             onChange={onChange}
-            onBlur={onBlur}
           />
-          {isBlur.reciever_phone_number && (
-            <span>{errors.reciever_phone_number}</span>
+          {errors.receiver_phone_number && (
+            <span>{errors.receiver_phone_number}</span>
           )}
         </DefaultTextWrapper>
-
         <PostTextWrapper>
           <label htmlFor="address">배송주소</label>
           <input
@@ -73,21 +64,19 @@ const OrderForm = ({
             id="address"
             value={address}
             onChange={onChange}
-            onBlur={onBlur}
-            readOnly
           />
           <Button type="button" onClick={onPostCode}>
             우편번호 조회
           </Button>
-          <input type="text" value={address2} readOnly onChange={onChange} />
+          <input type="text" value={address2} onChange={onChange} />
           <input
             type="text"
             name="address3"
             value={address3}
             onChange={onChange}
-            onBlur={onBlur}
             placeholder="(상세주소)"
           />
+          {errors.address && <p className="errors-message">{errors.address}</p>}
         </PostTextWrapper>
         <DefaultTextWrapper className="post-message">
           <label htmlFor="">배송 메시지</label>
@@ -97,6 +86,7 @@ const OrderForm = ({
             name="address_message"
             onChange={onChange}
           />
+          {errors.address_message && <span>{errors.address_message}</span>}
         </DefaultTextWrapper>
       </Form>
     </OrderFormWrapper>

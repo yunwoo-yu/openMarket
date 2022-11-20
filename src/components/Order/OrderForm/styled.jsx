@@ -25,6 +25,14 @@ export const OrderFormWrapper = styled.section`
     margin-top: 40px;
     padding-bottom: 8px;
     border-bottom: 2px solid #c4c4c4;
+
+    &.errors-message {
+      width: 100%;
+      margin: 0 0 0 170px;
+      padding: 0;
+      border: none;
+      color: #eb5757;
+    }
   }
   .payment-title {
     width: 760px;

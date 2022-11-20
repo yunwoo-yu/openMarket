@@ -8,6 +8,7 @@ const OrderPayment = ({
   onSubmit,
   setIsCheckBox,
   isCheckBox,
+  errors,
 }) => {
   const convertedTotalPrice = data
     .reduce((acc, cur) => {
@@ -79,6 +80,9 @@ const OrderPayment = ({
           />
           <label htmlFor="KAKAOPAY">카카오 페이</label>
         </PaymentTextWrapper>
+        {errors.payment_method && (
+          <p className="errors-message">{errors.payment_method}</p>
+        )}
       </div>
       <div className="payment-result-box">
         <p>최종결제 정보</p>

@@ -12,6 +12,11 @@ export const OrderPaymentWrapper = styled.section`
       font-size: 24px;
       line-height: 30px;
       margin-bottom: 18px;
+
+      &.errors-message {
+        font-size: 16px;
+        color: #eb5757;
+      }
     }
   }
 
