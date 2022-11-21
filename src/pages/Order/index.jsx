@@ -66,7 +66,9 @@ const OrderPage = () => {
   }, []);
 
   const directOrderMutation = useMutation(postProductOrder, {
-    onSuccess(data) {},
+    onSuccess(data) {
+      console.log(data);
+    },
     onError(err) {
       for (const [key, value] of Object.entries(err.response.data)) {
         if (value) {
@@ -126,8 +128,6 @@ const OrderPage = () => {
       address: `(${inputValue.address}) ${inputValue.address2} ${inputValue.address3}`,
     });
   };
-
-  console.log(inputValue, location);
 
   return (
     <OrderWrapper>
