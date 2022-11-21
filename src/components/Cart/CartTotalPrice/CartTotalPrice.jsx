@@ -1,7 +1,7 @@
 import { Button } from "../../common/Button/Button";
 import { CartTotalPriceWrapper } from "./styled";
 
-const CartTotalPrice = ({ sumCartItem }) => {
+const CartTotalPrice = ({ sumCartItem, onClickCartOrder }) => {
   const { price, shipping_fee } = sumCartItem;
 
   const convetedPrice = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -44,7 +44,9 @@ const CartTotalPrice = ({ sumCartItem }) => {
           </p>
         </li>
       </ul>
-      <Button size="large">주문하기</Button>
+      <Button size="large" onClick={onClickCartOrder}>
+        주문하기
+      </Button>
     </CartTotalPriceWrapper>
   );
 };

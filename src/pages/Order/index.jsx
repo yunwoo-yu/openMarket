@@ -18,8 +18,6 @@ const OrderPage = () => {
   const postPopUp = useDaumPostcodePopup(postcodeScriptUrl);
   const [isPaymentCheckBox, setIsPaymentCheckBox] = useState(true);
   const [inputValue, setInputValue] = useState({
-    product_id: 0,
-    quantity: 0,
     order_kind: "",
     receiver: "",
     receiver_phone_number: "",
@@ -39,6 +37,12 @@ const OrderPage = () => {
     address_message: "",
     payment_method: "",
   });
+  const convertedTotalPrice = data.reduce((acc, cur) => {
+    acc += cur.price * cur.quantity;
+    acc += cur.shipping_fee;
+
+    return acc;
+  }, 0);
 
   useEffect(() => {
     if (
@@ -52,13 +56,17 @@ const OrderPage = () => {
         total_price: data[0].price * data[0].quantity + data[0].shipping_fee,
         quantity: data[0].quantity,
       });
+    } else {
+      setInputValue({
+        ...inputValue,
+        order_kind: location.state.order_kind,
+        total_price: convertedTotalPrice,
+      });
     }
   }, []);
 
   const directOrderMutation = useMutation(postProductOrder, {
-    onSuccess(data) {
-      console.log(data);
-    },
+    onSuccess(data) {},
     onError(err) {
       for (const [key, value] of Object.entries(err.response.data)) {
         if (value) {
@@ -115,16 +123,18 @@ const OrderPage = () => {
 
     directOrderMutation.mutate({
       ...inputValue,
-      address: inputValue.address + inputValue.address2 + inputValue.address3,
+      address: `(${inputValue.address}) ${inputValue.address2} ${inputValue.address3}`,
     });
   };
+
+  console.log(inputValue, location);
 
   return (
     <OrderWrapper>
       <h2>주문/결제하기</h2>
       <OrderHeader />
       <OrderList data={data} />
-      <OrderTotalPrice data={data} />
+      <OrderTotalPrice totalPrice={convertedTotalPrice} />
       <OrderForm
         onPostCode={handleClick}
         formValue={inputValue}

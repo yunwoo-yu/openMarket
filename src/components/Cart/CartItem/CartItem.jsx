@@ -4,7 +4,12 @@ import { CartItemWrapper } from "./styled";
 import { Button } from "../../common/Button/Button";
 import closeImg from "../../../assets/icon-delete.svg";
 
-const CartItem = ({ cartStateData, onHandleClick, onClickModal }) => {
+const CartItem = ({
+  cartStateData,
+  onHandleClick,
+  onClickModal,
+  onClickOneCartOrder,
+}) => {
   const {
     is_active,
     quantity,
@@ -74,7 +79,13 @@ const CartItem = ({ cartStateData, onHandleClick, onClickModal }) => {
         </li>
         <li className="order-box">
           <p>{convetedTotalPrice}원</p>
-          <Button>주문하기</Button>
+          <Button
+            onClick={() => {
+              onClickOneCartOrder(cartStateData);
+            }}
+          >
+            주문하기
+          </Button>
         </li>
       </CartItemWrapper>
     </>

@@ -1,12 +1,7 @@
 import { OrderTotalPriceWrapper } from "./styled";
 
-const OrderTotalPrice = ({ data }) => {
-  const convertedTotalPrice = data
-    .reduce((acc, cur) => {
-      acc += cur.price * cur.quantity;
-      acc += cur.shipping_fee;
-      return acc;
-    }, 0)
+const OrderTotalPrice = ({ totalPrice }) => {
+  const convertedTotalPrice = totalPrice
     .toString()
     .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 

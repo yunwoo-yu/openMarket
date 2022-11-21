@@ -6,6 +6,7 @@ const CartList = ({
   isDeleteModal,
   onHandleClick,
   onClickModal,
+  onClickOneCartOrder,
 }) => {
   return (
     <CartListWrapper>
@@ -17,6 +18,7 @@ const CartList = ({
           isDeleteModal={isDeleteModal}
           onClickModal={onClickModal}
           onHandleClick={onHandleClick}
+          onClickOneCartOrder={onClickOneCartOrder}
         />
       ))}
     </CartListWrapper>

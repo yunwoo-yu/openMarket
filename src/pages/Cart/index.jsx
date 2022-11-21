@@ -11,6 +11,7 @@ import Loading from "../../components/common/Loading/Loading";
 import { useState } from "react";
 import CartTotalPrice from "../../components/Cart/CartTotalPrice/CartTotalPrice";
 import Modal from "../../components/common/Modal/Modal";
+import { useNavigate } from "react-router-dom";
 
 const CartPage = () => {
   const { data, isLoading, isError, error } = useQuery("cart", getUserCart, {
@@ -23,6 +24,7 @@ const CartPage = () => {
   const [isDeleteModal, setIsDeleteModal] = useState(false);
   const [selectedCartId, setSelectedCartId] = useState();
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
 
   const toggleMutation = useMutation(setUserCart, {
     onSuccess(res) {
@@ -144,6 +146,31 @@ const CartPage = () => {
     deleteCartItemMutation.mutate(selectedCartId);
   };
 
+  const onClickOneCartOrder = (data) => {
+    const orderData = {
+      product_id: data.product_id,
+      product_name: data.product_name,
+      store_name: data.store_name,
+      image: data.image,
+      price: data.price,
+      shipping_fee: data.shipping_fee,
+      quantity: data.quantity,
+      order_kind: "cart_one_order",
+    };
+
+    navigate("/order/", {
+      state: { data: [orderData] },
+    });
+  };
+
+  const onClickCartOrder = () => {
+    const orderData = cartData.filter((el) => el.is_active === true);
+    console.log(orderData);
+    navigate("/order/", {
+      state: { data: orderData, order_kind: "cart_order" },
+    });
+  };
+
   const sumCartItem = cartData.reduce(
     (acc, cur) => {
       if (cur.is_active) {
@@ -188,8 +215,12 @@ const CartPage = () => {
         cartStateData={cartData}
         onHandleClick={HandleClick}
         onClickModal={onClickModal}
+        onClickOneCartOrder={onClickOneCartOrder}
       />
-      <CartTotalPrice sumCartItem={sumCartItem} />
+      <CartTotalPrice
+        sumCartItem={sumCartItem}
+        onClickCartOrder={onClickCartOrder}
+      />
     </CartWrapper>
   );
 };
