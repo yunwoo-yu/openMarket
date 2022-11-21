@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/openMarket/static/css/main.52adc353.css",
-    "main.js": "/openMarket/static/js/main.caac545a.js",
+    "main.js": "/openMarket/static/js/main.f846764e.js",
     "static/media/SpoqaHanSans-Light.woff": "/openMarket/static/media/SpoqaHanSans-Light.2efd9d0cd25cfd2e3e16.woff",
     "static/media/SpoqaHanSans-Thin.woff": "/openMarket/static/media/SpoqaHanSans-Thin.fa5d85bca1b2b4ad3c56.woff",
     "static/media/SpoqaHanSans-Regular.woff": "/openMarket/static/media/SpoqaHanSans-Regular.a4038e1b6c14b2b6028c.woff",
@@ -24,10 +24,10 @@
     "static/media/icon-plus-line.svg": "/openMarket/static/media/icon-plus-line.d658909c1751cb655de642c07d7e90da.svg",
     "static/media/icon-minus-line.svg": "/openMarket/static/media/icon-minus-line.73ef1e8c52aa8aab95e50eec7036f567.svg",
     "main.52adc353.css.map": "/openMarket/static/css/main.52adc353.css.map",
-    "main.caac545a.js.map": "/openMarket/static/js/main.caac545a.js.map"
+    "main.f846764e.js.map": "/openMarket/static/js/main.f846764e.js.map"
   },
   "entrypoints": [
     "static/css/main.52adc353.css",
-    "static/js/main.caac545a.js"
+    "static/js/main.f846764e.js"
   ]
 }
