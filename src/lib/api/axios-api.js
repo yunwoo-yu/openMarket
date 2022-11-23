@@ -10,7 +10,6 @@ const accessInstance = axios.create({
   baseURL: apiUrl,
   headers: {
     "Content-Type": "application/json",
-    Authorization: `JWT ${localStorage.getItem("token")}`,
   },
 });
 
