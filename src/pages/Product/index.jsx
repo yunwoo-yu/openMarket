@@ -19,6 +19,8 @@ const ProductPage = () => {
     getProductsDetail(id)
   );
   const { data: cartData } = useQuery("cart", getUserCart);
+  const isType = localStorage.getItem("usertype");
+  const isLoggin = localStorage.getItem("token");
 
   const addCartItemMutation = useMutation(postCartItem, {
     onSuccess(data) {

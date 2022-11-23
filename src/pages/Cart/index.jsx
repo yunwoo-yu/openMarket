@@ -12,7 +12,6 @@ import { useState } from "react";
 import CartTotalPrice from "../../components/Cart/CartTotalPrice/CartTotalPrice";
 import Modal from "../../components/common/Modal/Modal";
 import { useNavigate } from "react-router-dom";
-import NotAuthCart from "../../components/Cart/NotAuthCart/NotAuthCart";
 
 const CartPage = () => {
   const { data, isLoading, isError, error } = useQuery("cart", getUserCart, {
@@ -186,7 +185,37 @@ const CartPage = () => {
     },
     { price: 0, shipping_fee: 0 }
   );
-  if (isLoggin || isType) return <NotAuthCart />;
+  if (!isLoggin)
+    return (
+      <Modal
+        resultText={"예"}
+        rejectText={"아니요"}
+        onClickResult={() => {
+          navigate("/login");
+        }}
+        onClickReject={() => {
+          navigate("/");
+        }}
+      >
+        장바구니는 로그인 이후 이용하실 수 있습니다. 로그인 페이지로 이동
+        하시겠습니까?
+      </Modal>
+    );
+  if (!(isType === "BUYER"))
+    return (
+      <Modal
+        resultText={"예"}
+        rejectText={"아니요"}
+        onClickResult={() => {
+          navigate(-1);
+        }}
+        onClickReject={() => {
+          navigate("/");
+        }}
+      >
+        판매자는 이용하실 수 없습니다. 이전페이지로 돌아 가시겠습니까?
+      </Modal>
+    );
   if (isLoading) return <Loading />;
   if (isError) return <p>{error.response.data.detail}</p>;
 
