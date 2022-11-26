@@ -18,7 +18,9 @@ const ProductPage = () => {
   const { data, isLoading, isError, error } = useQuery(["products", id], () =>
     getProductsDetail(id)
   );
+
   const { data: cartData } = useQuery("cart", getUserCart);
+
   const isType = localStorage.getItem("usertype");
   const isLoggin = localStorage.getItem("token");
 
@@ -50,6 +52,7 @@ const ProductPage = () => {
       quantity: amount,
       order_kind: "direct_order",
     };
+
     navigate("/order", {
       state: {
         data: [orderData],

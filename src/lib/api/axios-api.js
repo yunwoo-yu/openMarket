@@ -14,14 +14,10 @@ const accessInstance = axios.create({
 });
 
 accessInstance.interceptors.request.use((config) => {
-  const token = localStorage.getItem("token");
-  if (token) {
-    config.headers = {
-      ...config.headers,
-      Authorization: `JWT ${localStorage.getItem("token")}`,
-    };
-    return config;
-  }
+  config.headers = {
+    Authorization: `JWT ${localStorage.getItem("token")}`,
+  };
+  return config;
 });
 
 export const getProductsList = async () => {
@@ -43,6 +39,7 @@ export const postUserLogOut = async (formData) => {
   const response = await instance.post("/accounts/logout/");
   return response.data;
 };
+
 export const postUserIdCheck = async (userId) => {
   const response = await instance.post(
     "/accounts/signup/valid/username/",
