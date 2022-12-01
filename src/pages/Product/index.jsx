@@ -11,6 +11,8 @@ import { useState } from "react";
 import Loading from "../../components/common/Loading/Loading.jsx";
 
 const ProductPage = () => {
+  const isType = localStorage.getItem("usertype");
+  const isLoggin = localStorage.getItem("token");
   const [amount, setAmount] = useState(1);
   const [isModal, setIsModal] = useState(false);
   const navigate = useNavigate();
@@ -19,10 +21,9 @@ const ProductPage = () => {
     getProductsDetail(id)
   );
 
-  const { data: cartData } = useQuery("cart", getUserCart);
-
-  const isType = localStorage.getItem("usertype");
-  const isLoggin = localStorage.getItem("token");
+  const { data: cartData } = useQuery("cart", getUserCart, {
+    enabled: !!isLoggin && isType === "BUYER",
+  });
 
   const addCartItemMutation = useMutation(postCartItem, {
     onSuccess(data) {
@@ -42,6 +43,25 @@ const ProductPage = () => {
   };
 
   const onClickProductOrder = () => {
+    if (!isLoggin || !isType === "BUYER") {
+      return (
+        isModal && (
+          <Modal
+            rejectText={"아니요"}
+            resultText={"예"}
+            onClickReject={() => {
+              setIsModal(false);
+            }}
+            onClickResult={() => {
+              navigate("/cart");
+            }}
+          >
+            이미 장바구니에 있는 상품입니다. 장바구니로 이동하시겠습니까?
+          </Modal>
+        )
+      );
+    }
+
     const orderData = {
       product_id: data.product_id,
       product_name: data.product_name,
@@ -81,44 +101,28 @@ const ProductPage = () => {
   if (isLoading) return <Loading />;
   if (isError) return <p>{error.response.data.detail}</p>;
 
-  const convetedPrice = data.price
-    .toString()
-    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  const convetedPrice = data.price.toLocaleString();
 
-  const convertedSum = (data.price * amount)
-    .toString()
-    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  const convertedSum = (data.price * amount).toLocaleString();
 
   return (
     <>
-      {isModal &&
-        (isCartItemCheck() ? (
-          <Modal
-            rejectText={"아니요"}
-            resultText={"예"}
-            onClickReject={() => {
-              setIsModal(false);
-            }}
-            onClickResult={() => {
-              navigate("/cart");
-            }}
-          >
-            이미 장바구니에 있는 상품입니다. 장바구니로 이동하시겠습니까?
-          </Modal>
-        ) : (
-          <Modal
-            rejectText={"아니요"}
-            resultText={"예"}
-            onClickReject={() => {
-              setIsModal(false);
-            }}
-            onClickResult={() => {
-              navigate("/cart");
-            }}
-          >
-            장바구니에 상품이 담겼습니다. 장바구니로 이동하시겠습니까?
-          </Modal>
-        ))}
+      {isModal && (
+        <Modal
+          rejectText={"아니요"}
+          resultText={"예"}
+          onClickReject={() => {
+            setIsModal(false);
+          }}
+          onClickResult={() => {
+            navigate("/cart");
+          }}
+        >
+          {isCartItemCheck
+            ? "이미 장바구니에 있는 상품입니다. 장바구니로 이동하시겠습니까?"
+            : "장바구니에 상품이 담겼습니다. 장바구니로 이동하시겠습니까?"}
+        </Modal>
+      )}
       <ProductsDetail
         convetedPrice={convetedPrice}
         convertedSum={convertedSum}

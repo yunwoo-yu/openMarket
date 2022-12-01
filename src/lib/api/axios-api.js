@@ -20,9 +20,14 @@ accessInstance.interceptors.request.use((config) => {
   return config;
 });
 
-export const getProductsList = async () => {
-  const response = await instance.get(`/products`);
-  return response.data;
+export const getProductsList = async (pageParams) => {
+  const response = await instance.get(`/products/?page=${pageParams}`);
+
+  return {
+    ...response.data,
+    isNext: !!response.data.next,
+    nextPage: pageParams + 1,
+  };
 };
 
 export const getProductsDetail = async (id) => {
