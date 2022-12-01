@@ -43,25 +43,14 @@ const ProductPage = () => {
   };
 
   const onClickProductOrder = () => {
-    if (!isLoggin || !isType === "BUYER") {
-      return (
-        isModal && (
-          <Modal
-            rejectText={"아니요"}
-            resultText={"예"}
-            onClickReject={() => {
-              setIsModal(false);
-            }}
-            onClickResult={() => {
-              navigate("/cart");
-            }}
-          >
-            이미 장바구니에 있는 상품입니다. 장바구니로 이동하시겠습니까?
-          </Modal>
-        )
-      );
+    if (!isLoggin) {
+      alert("로그인 이후 구매가 가능합니다.");
+      return navigate("/login");
+    } else if (isType === "SELLER") {
+      return alert("판매자는 구매가 불가능 합니다.");
     }
 
+    console.log(isLoggin, isType);
     const orderData = {
       product_id: data.product_id,
       product_name: data.product_name,
@@ -81,6 +70,13 @@ const ProductPage = () => {
   };
 
   const onClickAddProductToCart = () => {
+    if (!isLoggin) {
+      alert("로그인 이후 장바구니 이용이 가능합니다.");
+      return navigate("/login");
+    } else if (isType === "SELLER") {
+      return alert("판매자는 장바구니를 이용하실 수 없습니다.");
+    }
+
     addCartItemMutation.mutate({
       product_id: data.product_id,
       quantity: amount,
@@ -108,6 +104,22 @@ const ProductPage = () => {
   return (
     <>
       {isModal && (
+        <Modal
+          rejectText={"아니요"}
+          resultText={"예"}
+          onClickReject={() => {
+            setIsModal(false);
+          }}
+          onClickResult={() => {
+            navigate("/cart");
+          }}
+        >
+          {isCartItemCheck
+            ? "이미 장바구니에 있는 상품입니다. 장바구니로 이동하시겠습니까?"
+            : "장바구니에 상품이 담겼습니다. 장바구니로 이동하시겠습니까?"}
+        </Modal>
+      )}
+      {isModal && !isType && (
         <Modal
           rejectText={"아니요"}
           resultText={"예"}

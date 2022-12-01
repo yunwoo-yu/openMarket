@@ -1,6 +1,6 @@
 import MainBanner from "../../components/Banner/MainBanner";
 import ProductsList from "../../components/Products/ProductsList/ProductsList";
-import { useInfiniteQuery, useQuery } from "react-query";
+import { useInfiniteQuery } from "react-query";
 import { getProductsList } from "../../lib/api/axios-api";
 import { HomeWrapper } from "./styled";
 import Loading from "../../components/common/Loading/Loading";
