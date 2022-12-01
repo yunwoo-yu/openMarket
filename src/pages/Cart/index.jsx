@@ -14,10 +14,13 @@ import Modal from "../../components/common/Modal/Modal";
 import { useNavigate } from "react-router-dom";
 
 const CartPage = () => {
+  const isType = localStorage.getItem("usertype");
+  const isLoggin = localStorage.getItem("token");
   const { data, isLoading, isError, error } = useQuery("cart", getUserCart, {
     onSuccess(data) {
       setCartData(data);
     },
+    enabled: !!isLoggin && isType === "BUYER",
   });
   const [cartData, setCartData] = useState([]);
   const [isActive, setIsActive] = useState(false);
@@ -25,8 +28,6 @@ const CartPage = () => {
   const [selectedCartId, setSelectedCartId] = useState();
   const queryClient = useQueryClient();
   const navigate = useNavigate();
-  const isType = localStorage.getItem("usertype");
-  const isLoggin = localStorage.getItem("token");
 
   const toggleMutation = useMutation(setUserCart, {
     onSuccess(res) {
