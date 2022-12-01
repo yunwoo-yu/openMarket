@@ -23,7 +23,7 @@ function App() {
         <BrowserRouter basename={process.env.PUBLIC_URL}>
           <Routes>
             <Route path="/" element={<LayOut />}>
-              <Route path="" element={<HomePage />} />
+              <Route index element={<HomePage />} />
               <Route path="/products/:id" element={<ProductPage />} />
               <Route path="/cart" element={<CartPage />} />
               <Route path="/order" element={<OrderPage />} />
