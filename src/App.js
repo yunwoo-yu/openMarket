@@ -11,6 +11,7 @@ import SignUpPage from "./pages/SignUp/index";
 import PrivateRotuer from "./components/router/PrivateRouter";
 import { useSelector } from "react-redux";
 import OrderPage from "./pages/Order";
+import MyPage from "./pages/MyPage/MyPage";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ function App() {
               <Route path="/products/:id" element={<ProductPage />} />
               <Route path="/cart" element={<CartPage />} />
               <Route path="/order" element={<OrderPage />} />
+              <Route path="/mypage" element={<MyPage />} />
             </Route>
             <Route
               path="/login"
