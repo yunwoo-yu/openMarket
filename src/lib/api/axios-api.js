@@ -13,12 +13,19 @@ const accessInstance = axios.create({
   },
 });
 
-accessInstance.interceptors.request.use((config) => {
-  config.headers = {
-    Authorization: `JWT ${localStorage.getItem("token")}`,
-  };
-  return config;
-});
+accessInstance.interceptors.request.use(
+  (config) => {
+    if (!config.headers.Authorization) {
+      config.headers = {
+        ...config.headers,
+        Authorization: `JWT ${localStorage.getItem("token")}`,
+      };
+    }
+
+    return config;
+  },
+  (error) => {}
+);
 
 export const getProductsList = async (pageParams) => {
   const response = await instance.get(`/products/?page=${pageParams}`);

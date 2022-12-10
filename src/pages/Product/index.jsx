@@ -20,7 +20,7 @@ const ProductPage = () => {
   const { data, isLoading, isError, error } = useQuery(["products", id], () =>
     getProductsDetail(id)
   );
-
+  console.log(data);
   const { data: cartData } = useQuery("cart", getUserCart, {
     enabled: !!isLoggin && isType === "BUYER",
   });
