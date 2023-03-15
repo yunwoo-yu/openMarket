@@ -1,33 +1,35 @@
-import { useMutation } from "react-query";
-import { useDispatch, useSelector } from "react-redux";
-import { UserTypeTabCard } from "../../components/User/UserTypeTabCard/UserTypeTabCard";
-import Logo from "../../components/common/Logo/Logo";
-import UserSignUp from "../../components/User/UserSignUp/UserSignUp";
+import { useMutation } from 'react-query';
+import { useDispatch, useSelector } from 'react-redux';
+import { UserTypeTabCard } from '../../components/User/UserTypeTabCard/UserTypeTabCard';
+import Logo from '../../components/common/Logo/Logo';
+import UserSignUp from '../../components/User/UserSignUp/UserSignUp';
 import {
   postCompanyRegistrationNumberCheck,
   postSignUpBuyer,
   postSignUpSeller,
   postUserIdCheck,
-} from "../../lib/api/axios-api";
-import { setType } from "../../store/slice/userSlice";
-import { useState } from "react";
-import { useRef } from "react";
+} from '../../lib/api/axios-api';
+import { setType } from '../../store/slice/userSlice';
+import { useState } from 'react';
+import { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const SignUpPage = () => {
   const initialState = {
-    username: "",
-    password: "",
-    password2: "",
-    phone_number: "",
-    name: "",
-    company_registration_number: "",
-    store_name: "",
+    username: '',
+    password: '',
+    password2: '',
+    phone_number: '',
+    name: '',
+    company_registration_number: '',
+    store_name: '',
   };
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const userType = useSelector((state) => state.user.type);
   const idRef = useRef();
-  const [idDuplicateCheck, setIdDuplicateCheck] = useState("");
-  const [companyNumberCheck, setCompanyNumberCheck] = useState("");
+  const [idDuplicateCheck, setIdDuplicateCheck] = useState('');
+  const [companyNumberCheck, setCompanyNumberCheck] = useState('');
   const [terms, setTerms] = useState(false);
   const [values, setValues] = useState({ ...initialState });
   const [errors, setErrors] = useState({ ...initialState });
@@ -64,24 +66,23 @@ const SignUpPage = () => {
     },
   });
 
-  const companyRegistrationNumberCheckMutation = useMutation(
-    postCompanyRegistrationNumberCheck,
-    {
-      onSuccess(data) {
-        setCompanyNumberCheck(data.Success);
-      },
-      onError(err) {
-        setErrors({
-          ...errors,
-          company_registration_number: err.response.data.FAIL_Message,
-        });
-      },
-    }
-  );
+  const companyRegistrationNumberCheckMutation = useMutation(postCompanyRegistrationNumberCheck, {
+    onSuccess(data) {
+      setCompanyNumberCheck(data.Success);
+    },
+    onError(err) {
+      setErrors({
+        ...errors,
+        company_registration_number: err.response.data.FAIL_Message,
+      });
+    },
+  });
 
   const buyerSubmitMutation = useMutation(postSignUpBuyer, {
     onSuccess(data) {
       console.log(data);
+      navigate('/');
+      alert('회원가입이 완료 되었습니다.');
     },
     onError(err) {
       console.log(err);
@@ -91,6 +92,8 @@ const SignUpPage = () => {
   const sellerSubmitMutation = useMutation(postSignUpSeller, {
     onSuccess(data) {
       console.log(data);
+      navigate('/');
+      alert('회원가입이 완료 되었습니다.');
     },
     onError(err) {
       console.log(err);
@@ -98,17 +101,17 @@ const SignUpPage = () => {
   });
 
   const isValids = (target, targetName) => {
-    if (targetName === "username") {
+    if (targetName === 'username') {
       return /^[a-z]+[a-zA-Z0-9]{5,19}$/g.test(target);
-    } else if (targetName === "password") {
+    } else if (targetName === 'password') {
       return /^(?=.*[a-z])(?=.*[0-9]).{8,16}$/g.test(target);
-    } else if (targetName === "password2") {
+    } else if (targetName === 'password2') {
       return target !== password ? false : true;
-    } else if (targetName === "phone_number") {
+    } else if (targetName === 'phone_number') {
       return /^01([0|1|6|7|8|9])([0-9]{3,4})([0-9]{4})$/g.test(target);
-    } else if (targetName === "name") {
-      return target === "" ? false : true;
-    } else if (targetName === "company_registration_number") {
+    } else if (targetName === 'name') {
+      return target === '' ? false : true;
+    } else if (targetName === 'company_registration_number') {
       return /^[0-9]{10}$/g.test(target);
     }
   };
@@ -134,15 +137,15 @@ const SignUpPage = () => {
     });
 
     if (!event.target.value) {
-      setErrors({ ...errors, [event.target.name]: "필수 정보입니다." });
+      setErrors({ ...errors, [event.target.name]: '필수 정보입니다.' });
     }
   };
 
   const onChangeHandler = (event) => {
     const { name, value } = event.target;
 
-    setIdDuplicateCheck("");
-    setCompanyNumberCheck("");
+    setIdDuplicateCheck('');
+    setCompanyNumberCheck('');
     setValues({
       ...values,
       [name]: value,
@@ -153,50 +156,45 @@ const SignUpPage = () => {
         ...isBlurs,
         [name]: true,
       });
-      if (name === "username") {
+      if (name === 'username') {
         setErrors({
           ...errors,
-          [name]:
-            "6자 이상 20자 이내의 영문 소문자, 대문자, 숫자만 사용 가능합니다.",
+          [name]: '6자 이상 20자 이내의 영문 소문자, 대문자, 숫자만 사용 가능합니다.',
         });
-      } else if (name === "password") {
+      } else if (name === 'password') {
         setErrors({
           ...errors,
-          [name]: "비밀번호는 8자 이상, 영소문자를 포함해야 합니다.",
+          [name]: '비밀번호는 8자 이상, 영소문자를 포함해야 합니다.',
         });
-      } else if (name === "password2" && value !== password) {
+      } else if (name === 'password2' && value !== password) {
         setErrors({
           ...errors,
-          [name]: "비밀번호가 일치하지 않습니다.",
+          [name]: '비밀번호가 일치하지 않습니다.',
         });
-      } else if (name === "phone_number") {
+      } else if (name === 'phone_number') {
         setErrors({
           ...errors,
-          [name]:
-            "핸드폰번호는 01*으로 시작해야 하는 10~11자리 숫자여야 합니다.",
+          [name]: '핸드폰번호는 01*으로 시작해야 하는 10~11자리 숫자여야 합니다.',
         });
-      } else if (
-        userType === "SELLER" &&
-        name === "company_registration_number"
-      ) {
+      } else if (userType === 'SELLER' && name === 'company_registration_number') {
         setErrors({
           ...errors,
-          [name]: "사업자등록번호는 10자리로 이루어진 숫자입니다.",
+          [name]: '사업자등록번호는 10자리로 이루어진 숫자입니다.',
         });
       }
     } else {
       setErrors({
         ...errors,
-        [name]: "",
+        [name]: '',
       });
     }
-    if (userType === "SELLER") {
+    if (userType === 'SELLER') {
     }
   };
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    userType === "BUYER"
+    userType === 'BUYER'
       ? buyerSubmitMutation.mutate({
           username,
           password,
@@ -222,7 +220,7 @@ const SignUpPage = () => {
         <button
           type="button"
           onClick={() => {
-            setUserTypeChange("BUYER");
+            setUserTypeChange('BUYER');
           }}
         >
           구매회원가입
@@ -230,7 +228,7 @@ const SignUpPage = () => {
         <button
           type="button"
           onClick={() => {
-            setUserTypeChange("SELLER");
+            setUserTypeChange('SELLER');
           }}
         >
           판매회원가입
