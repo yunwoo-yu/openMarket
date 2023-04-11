@@ -5,6 +5,7 @@ export const HeaderWrapper = styled.header`
   width: 100%;
   height: 90px;
   box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.1);
+  padding: 0px 20px;
 `;
 
 export const InnerHeader = styled(InnerWrapper)`

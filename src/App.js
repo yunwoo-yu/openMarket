@@ -11,9 +11,16 @@ import SignUpPage from "./pages/SignUp/index";
 import PrivateRotuer from "./components/router/PrivateRouter";
 import { useSelector } from "react-redux";
 import OrderPage from "./pages/Order";
-import MyPage from "./pages/MyPage/MyPage";
+import MyPage from "./pages/MyPage/index";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 1,
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 function App() {
   const accessToken = useSelector((state) => state.user.token);
