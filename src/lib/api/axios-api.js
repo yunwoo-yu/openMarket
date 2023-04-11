@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const apiUrl = "https://openmarket.weniv.co.kr";
+
 const instance = axios.create({
   baseURL: apiUrl,
   headers: { "Content-Type": "application/json" },
@@ -24,17 +25,13 @@ accessInstance.interceptors.request.use(
 
     return config;
   },
-  (error) => {}
+  (error) => {},
 );
 
 export const getProductsList = async (pageParams) => {
   const response = await instance.get(`/products/?page=${pageParams}`);
 
-  return {
-    ...response.data,
-    isNext: !!response.data.next,
-    nextPage: pageParams + 1,
-  };
+  return response.data;
 };
 
 export const getProductsDetail = async (id) => {
@@ -53,17 +50,14 @@ export const postUserLogOut = async (formData) => {
 };
 
 export const postUserIdCheck = async (userId) => {
-  const response = await instance.post(
-    "/accounts/signup/valid/username/",
-    userId
-  );
+  const response = await instance.post("/accounts/signup/valid/username/", userId);
   return response.data;
 };
 
 export const postCompanyRegistrationNumberCheck = async (userId) => {
   const response = await instance.post(
     "/accounts/signup/valid/company_registration_number/",
-    userId
+    userId,
   );
   return response.data;
 };
@@ -81,9 +75,7 @@ export const postSignUpSeller = async (formData) => {
 export const getUserCart = async () => {
   const cartItemDetails = [];
   const response = await (await accessInstance.get("/cart/")).data.results;
-  const filterItem = await Promise.all(
-    response.map((item) => getProductsDetail(item.product_id))
-  );
+  const filterItem = await Promise.all(response.map((item) => getProductsDetail(item.product_id)));
 
   cartItemDetails.push(...response);
 
@@ -115,5 +107,11 @@ export const deleteCartItem = async (itemId) => {
 
 export const postProductOrder = async (orderData) => {
   const response = await accessInstance.post("/order/", orderData);
+  return response.data;
+};
+
+export const getMyOrder = async () => {
+  const response = await accessInstance.get("/order/");
+
   return response.data;
 };
