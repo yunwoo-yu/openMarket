@@ -9,20 +9,18 @@ import { useEffect } from "react";
 
 const HomePage = () => {
   const { ref, inView } = useInView();
-  const { data, isLoading, isError, error, isFetchingNextPage, fetchNextPage } =
-    useInfiniteQuery(
-      "products",
-      ({ pageParam = 1 }) => getProductsList(pageParam),
-      {
-        getNextPageParam: (lastPage) => {
-          if (lastPage.isNext) return lastPage.nextPage;
-        },
-      }
-    );
+  const { data, isLoading, isError, error, isFetchingNextPage, fetchNextPage, hasNextPage } =
+    useInfiniteQuery("products", ({ pageParam = 1 }) => getProductsList(pageParam), {
+      getNextPageParam: (lastPage, allPage) => {
+        const nextPage = allPage.length + 1;
+
+        return lastPage.next ? nextPage : undefined;
+      },
+    });
 
   useEffect(() => {
-    if (inView) fetchNextPage();
-  }, [inView]);
+    if (inView && hasNextPage) fetchNextPage();
+  }, [inView, hasNextPage, fetchNextPage]);
 
   if (isLoading) return <Loading />;
   if (isError) return <p>{error.response.data.detail}</p>;
@@ -31,12 +29,7 @@ const HomePage = () => {
     <>
       <HomeWrapper>
         <MainBanner />
-        <ProductsList
-          data={data}
-          isLoading={isLoading}
-          isError={isError}
-          error={error}
-        />
+        <ProductsList data={data} isLoading={isLoading} isError={isError} error={error} />
         {isFetchingNextPage ? <Loading /> : <div ref={ref}></div>}
       </HomeWrapper>
     </>

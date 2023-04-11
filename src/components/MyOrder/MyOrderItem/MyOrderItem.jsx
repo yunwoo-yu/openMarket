@@ -31,17 +31,17 @@ const MyOrderItem = (props) => {
     <MyOrderItemWrapper>
       {!isError ? (
         <>
-          <img src={data.image} alt='상품 이미지' />
-          <div className='text-box'>
-            <p className='created-day'>{created_at.split("T")[0]} 결제</p>
-            <p className='product-name'>
+          <img src={data.image} alt="상품 이미지" />
+          <div className="text-box">
+            <p className="created-day">{created_at.split("T")[0]} 결제</p>
+            <p className="product-name">
               {data.product_name} {order_items.length > 1 && `외 ${order_items.length - 1} 개`}
             </p>
-            <strong className='total-price'>
+            <strong className="total-price">
               {total_price.toLocaleString("ko-KR")} <span>원</span>
             </strong>
-            <p className='address'>주소 : {address}</p>
-            <p className='receiver'>수령인 : {receiver}</p>
+            <p className="address">주소 : {address}</p>
+            <p className="receiver">수령인 : {receiver}</p>
           </div>
         </>
       ) : (

@@ -1,11 +1,7 @@
 import ProductsDetail from "../../components/Products/ProductsDetail/ProductsDetail.jsx";
 import { useMutation, useQuery } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
-import {
-  getProductsDetail,
-  getUserCart,
-  postCartItem,
-} from "../../lib/api/axios-api.js";
+import { getProductsDetail, getUserCart, postCartItem } from "../../lib/api/axios-api.js";
 import Modal from "../../components/common/Modal/Modal";
 import { useState } from "react";
 import Loading from "../../components/common/Loading/Loading.jsx";
@@ -18,7 +14,7 @@ const ProductPage = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const { data, isLoading, isError, error } = useQuery(["products", id], () =>
-    getProductsDetail(id)
+    getProductsDetail(id),
   );
   console.log(data);
   const { data: cartData } = useQuery("cart", getUserCart, {
@@ -36,9 +32,7 @@ const ProductPage = () => {
   });
 
   const isCartItemCheck = () => {
-    const isCartItem = cartData.filter(
-      (item) => item.product_id === data.product_id
-    ).length;
+    const isCartItem = cartData.filter((item) => item.product_id === data.product_id).length;
     return isCartItem;
   };
 
